@@ -9,5 +9,5 @@
 
 	echo "-- Page Title -- <br>";
 	echo "Character Count: " . $resultsTitle->charCount . "<br>";
-
+//test
 ?>

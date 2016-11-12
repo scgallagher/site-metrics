@@ -60,15 +60,9 @@
 		}
 
 		private function getSource(){
-			$srcText = tmpfile();
+			// $srcText = tmpfile();
 			$headerText = tmpfile();
 			$curlHandle = curl_init();
-
-			FB::info($headerText);
-			FB::info($srcText);
-
-			// echo var_dump($srcText) . "\n";
-			// echo var_dump($headerText) . "\n";
 
 			curl_setopt($curlHandle, CURLOPT_URL, $this->url);
 			// curl_setopt($curlHandle, CURLOPT_SSL_VERIFYPEER, 0);
@@ -76,18 +70,16 @@
 			curl_setopt($curlHandle, CURLOPT_CERTINFO, 1);
 			curl_setopt($curlHandle, CURLOPT_VERBOSE, 1);
 			curl_setopt($curlHandle, CURLOPT_STDERR, $headerText);
-			curl_setopt($curlHandle, CURLOPT_FILE, $srcText);
-			curl_exec($curlHandle);
+			//curl_setopt($curlHandle, CURLOPT_FILE, $srcText);
+			curl_setopt($curlHandle, CURLOPT_RETURNTRANSFER, true);
+			$this->source = curl_exec($curlHandle);
 
-			// Set $header to the verbose output returned by curl_exec
+			//Set $header to the verbose output returned by curl_exec
 			fseek($headerText, 0);
 			while(strlen($this->header .= fread($headerText, 8192)) == 8192);
 			// $header now contains header information for the curl
 			// operation that can be parsed to get size and load time
-
-			// Store the html source code in $source
-			fseek($srcText, 0);
-			while(strlen($this->source .= fread($srcText, 8192)) == 8192);
+			curl_close($curlHandle);
 
 		}
 

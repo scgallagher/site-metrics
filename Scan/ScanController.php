@@ -6,6 +6,8 @@
 	require_once("Scan/Scan_Performance.php");
 	require_once("Scan/Scan_Security.php");
 
+	include_once("firephp-core-0.4.0/lib/FirePHPCore/fb.php");
+
 	class ScanController {
 
 		public $resultsAll;
@@ -18,21 +20,21 @@
 		public function __construct($url){
 			$this->url = $url;
 			$this->resultsAll = new Results_All();
-			
+
 			$this->header = "";
 			$this->source = "";
 
+			FB::info("Inside constructor");
 			$this->getSource();
 			$this->getDOM();
 		}
 
 		public function scan(){
-			
+
 			$this->resultsAll->resultsSearchEngineOptimizations = $this->runScan_SearchEngineOptimizations();
 			$this->resultsAll->resultsMobile = $this->runscan_Mobile();
 			$this->resultsAll->resultsPerformance = $this->runScan_Performance();
 			$this->resultsAll->resultsSecurity = $this->runScan_Security();
-			
 
 			return $this->resultsAll;
 		}
@@ -62,8 +64,15 @@
 			$headerText = tmpfile();
 			$curlHandle = curl_init();
 
+			FB::info($headerText);
+			FB::info($srcText);
 
-			curl_setopt($curlHandle , CURLOPT_URL, $this->url);
+			// echo var_dump($srcText) . "\n";
+			// echo var_dump($headerText) . "\n";
+
+			curl_setopt($curlHandle, CURLOPT_URL, $this->url);
+			// curl_setopt($curlHandle, CURLOPT_SSL_VERIFYPEER, 0);
+			// curl_setopt($curlHandle, CURLOPT_SSL_VERIFYHOST, 0);
 			curl_setopt($curlHandle, CURLOPT_CERTINFO, 1);
 			curl_setopt($curlHandle, CURLOPT_VERBOSE, 1);
 			curl_setopt($curlHandle, CURLOPT_STDERR, $headerText);
@@ -87,6 +96,7 @@
 			libxml_use_internal_errors(true);
 			$this->dom->loadHTML($this->source);
 			libxml_use_internal_errors(false);
+
 		}
 
 		private function testDom(){

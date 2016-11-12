@@ -26,7 +26,7 @@ class Scan_PageTitle {
 			return false;
 		}
 		else {
-			$this->title = $titleList[0]->nodeValue;
+			$this->title = $titleList->item(0)->nodeValue;
 			return true;
 		}
 	}

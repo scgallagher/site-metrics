@@ -8,8 +8,12 @@
 	$resultsAll = $scanController->scan();
 
 	$resultsTitle = $resultsAll->resultsSearchEngineOptimizations->resultsPageTitle;
+	$resultsHeading = $resultsAll->resultsSearchEngineOptimizations->resultsHeading;
 
-	echo "-- Page Title -- <br>";
-	echo "Character Count: " . $resultsTitle->charCount . "<br>";
-//test
+	// echo "-- Page Title -- <br>";
+	// echo "Character Count: " . $resultsTitle->charCount . "<br>";
+	// echo "<br>";
+	echo $resultsTitle;
+	echo $resultsHeading;
+
 ?>

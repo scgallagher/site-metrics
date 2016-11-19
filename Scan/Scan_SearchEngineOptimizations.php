@@ -17,8 +17,10 @@
 
 
 		public function scan(){
-			$this->resultsSearchEngineOptimizations->resultsPageTitle = 
+			$this->resultsSearchEngineOptimizations->resultsPageTitle =
 				$this->runScan_PageTitle();
+			$this->resultsSearchEngineOptimizations->resultsHeading =
+				$this->runScan_Heading();
 
 			return $this->resultsSearchEngineOptimizations;
 		}

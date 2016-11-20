@@ -21,6 +21,8 @@
 				$this->runScan_PageTitle();
 			$this->resultsSearchEngineOptimizations->resultsHeading =
 				$this->runScan_Heading();
+			$this->resultsSearchEngineOptimizations->resultsMetaDescription =
+				$this->runScan_MetaDescription();
 
 			return $this->resultsSearchEngineOptimizations;
 		}

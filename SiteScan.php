@@ -4,7 +4,8 @@
 	require_once("Scan/ScanController.php");
 	include_once("firephp-core-0.4.0/lib/FirePHPCore/fb.php");
 
-	$scanController = new ScanController("http://localhost/wordpress/");
+	//$scanController = new ScanController("http://localhost/wordpress/");
+	$scanController = new ScanController("https://www.nhl.com");
 	$resultsAll = $scanController->scan();
 
 	$resultsTitle = $resultsAll->resultsSearchEngineOptimizations->resultsPageTitle;

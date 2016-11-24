@@ -12,10 +12,12 @@
 	class Scan_Performance {
 
 		private $dom;
+		private $url;
 		public $resultsPerformance;
 
-		public function __construct($dom){
+		public function __construct($dom, $url){
 			$this->dom = $dom;
+			$this->url = $url;
 			$this->resultsPerformance = new Results_Performance();
 		}
 
@@ -36,7 +38,7 @@
 		}
 
 		public function runScan_Compression(){
-			$scanCompresion = new Scan_Compression($this->dom);
+			$scanCompresion = new Scan_Compression($this->dom, $this->url);
 			return $scanCompresion->scan();
 		}
 

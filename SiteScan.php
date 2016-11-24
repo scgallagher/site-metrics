@@ -13,6 +13,7 @@
 	$resultsHeading = $resultsAll->resultsSearchEngineOptimizations->resultsHeading;
 	$resultsCompression = $resultsAll->resultsPerformance->resultsCompression;
 	$resultsPageRedirects = $resultsAll->resultsPerformance->resultsPageRedirects;
+	$resultsPageSize = $resultsAll->resultsPerformance->resultsPageSize;
 
 	// echo "-- Page Title -- <br>";
 	// echo "Character Count: " . $resultsTitle->charCount . "<br>";
@@ -21,5 +22,6 @@
 	echo $resultsHeading . "<br>";
 	echo "Compression: " . $resultsCompression->compressionResult . " (" . $resultsCompression->compressionPercentage . "% able to be compressed)<br>";
 	echo "Redirects: " . $resultsPageRedirects->redirectsResult . " (" . $resultsPageRedirects->redirectCount . " redirects)<br>";
+	echo "Page Size: " . $resultsPageSize->pageSizeResult . " (" . $resultsPageSize->pageSizeInBytes . " bytes)<br>";
 
 ?>

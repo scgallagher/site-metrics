@@ -15,7 +15,7 @@
 		}
 
 		public function scan(){
-			//Read in HTML file
+			//Read in webpage
 			$originalSiteContents = file_get_contents($this->url); //$testString = "I♥NY";
 			
 			//Check for simple compression

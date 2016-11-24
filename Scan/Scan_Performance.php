@@ -58,7 +58,7 @@
 		}
 
 		public function runScan_PageSize(){
-			$scanPageSize = new Scan_PageSize($this->dom);
+			$scanPageSize = new Scan_PageSize($this->dom, $this->url);
 			return $scanPageSize->scan();
 		}
 

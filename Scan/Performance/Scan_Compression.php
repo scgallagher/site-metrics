@@ -22,14 +22,14 @@
 			$originalSizeInBytes = strlen($originalSiteContents);
 			$compressedSizeInBytes = strlen(preg_replace('/\s+/', '', $originalSiteContents));
 			if ($originalSizeInBytes != 0)
-				$this->resultsCompression->compressionPercentage = ($originalSizeInBytes - $compressedSizeInBytes) / $originalSizeInBytes;
+				$this->resultsCompression->compressionPercentage = (($originalSizeInBytes - $compressedSizeInBytes) / $originalSizeInBytes) * 100;
 			else
 				$this->resultsCompression->compressionPercentage = -1;
 			
 			//Set result
 			if ($this->resultsCompression->compressionPercentage < 0)
 				$this->resultsCompression->compressionResult = "ERROR";
-			elseif ($this->resultsCompression->compressionPercentage < 5)
+			elseif ($this->resultsCompression->compressionPercentage < 10)
 				$this->resultsCompression->compressionResult = "Good";
 			elseif ($this->resultsCompression->compressionPercentage < 25)
 				$this->resultsCompression->compressionResult = "Ok";

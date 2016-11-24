@@ -63,7 +63,7 @@
 		}
 
 		public function runScan_RenderBlocking(){
-			$scanRenderBlocking = new Scan_RenderBlocking($this->dom);
+			$scanRenderBlocking = new Scan_RenderBlocking($this->dom, $this->url);
 			return $scanRenderBlocking->scan();
 		}
 

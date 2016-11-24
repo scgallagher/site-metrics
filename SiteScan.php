@@ -14,6 +14,7 @@
 	$resultsCompression = $resultsAll->resultsPerformance->resultsCompression;
 	$resultsPageRedirects = $resultsAll->resultsPerformance->resultsPageRedirects;
 	$resultsPageSize = $resultsAll->resultsPerformance->resultsPageSize;
+	$resultsRenderBlocking = $resultsAll->resultsPerformance->resultsRenderBlocking;
 
 	// echo "-- Page Title -- <br>";
 	// echo "Character Count: " . $resultsTitle->charCount . "<br>";
@@ -23,5 +24,9 @@
 	echo "Compression: " . $resultsCompression->compressionResult . " (" . $resultsCompression->compressionPercentage . "% able to be compressed)<br>";
 	echo "Redirects: " . $resultsPageRedirects->redirectsResult . " (" . $resultsPageRedirects->redirectCount . " redirects)<br>";
 	echo "Page Size: " . $resultsPageSize->pageSizeResult . " (" . $resultsPageSize->pageSizeInBytes . " bytes)<br>";
+	echo "RENDER BLOCKING:<br>";
+	echo "- CSS @import: " . $resultsRenderBlocking->cssImportResult . "<br>";
+	echo "- 'link' tags: " . $resultsRenderBlocking->linkTagsWithMediaAttributeResult . "<br>";
+	echo "- Multiple css: " . $resultsRenderBlocking->multipleCssResult . "<br>";
 
 ?>

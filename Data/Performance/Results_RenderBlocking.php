@@ -6,6 +6,8 @@
 		public $cssImportResult;
 		public $linkTagsWithMediaAttributeResult;
 		public $multipleCssResult;
+		public $scriptTagsInHeadResult;
+		public $onLoadResult;
 		
 		//Specific Metric(s)
 

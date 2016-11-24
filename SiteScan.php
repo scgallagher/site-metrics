@@ -6,7 +6,8 @@
 
 	//$scanController = new ScanController("http://localhost/wordpress/");
 	//$scanController = new ScanController("https://www.nhl.com");
-	$scanController = new ScanController("http://www.apple.com/imac");
+	//$scanController = new ScanController("http://www.apple.com/imac");
+	$scanController = new ScanController("http://www.google.com");
 	$resultsAll = $scanController->scan();
 
 	$resultsTitle = $resultsAll->resultsSearchEngineOptimizations->resultsPageTitle;
@@ -21,12 +22,14 @@
 	// echo "<br>";
 	echo $resultsTitle . "<br>";
 	echo $resultsHeading . "<br>";
-	echo "Compression: " . $resultsCompression->compressionResult . " (" . $resultsCompression->compressionPercentage . "% able to be compressed)<br>";
+	echo "Compression: " . $resultsCompression->compressionResult . " (" . round($resultsCompression->compressionPercentage, 2) . "% able to be compressed)<br>";
 	echo "Redirects: " . $resultsPageRedirects->redirectsResult . " (" . $resultsPageRedirects->redirectCount . " redirects)<br>";
 	echo "Page Size: " . $resultsPageSize->pageSizeResult . " (" . $resultsPageSize->pageSizeInBytes . " bytes)<br>";
 	echo "RENDER BLOCKING:<br>";
 	echo "- CSS @import: " . $resultsRenderBlocking->cssImportResult . "<br>";
 	echo "- 'link' tags: " . $resultsRenderBlocking->linkTagsWithMediaAttributeResult . "<br>";
 	echo "- Multiple css: " . $resultsRenderBlocking->multipleCssResult . "<br>";
+	echo "- Script in head: " . $resultsRenderBlocking->scriptTagsInHeadResult . "<br>";
+	echo "- onload usage: " . $resultsRenderBlocking->onLoadResult . "<br>";
 
 ?>

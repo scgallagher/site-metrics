@@ -29,7 +29,12 @@
 			$this->CheckForMultipleCss();
 			
 			//Check for JS in heading
+			$this->CheckForJavaScriptInHeading();
+			
 			//Check if onLoad() is used to load JS
+			$this->CheckForOnLoad();
+			
+			//Return results
 			return $this->resultsRenderBlocking;
 		}
 		
@@ -82,6 +87,38 @@
 			
 			//If not, good
 			$this->resultsRenderBlocking->multipleCssResult = "Good";
+		}
+		
+		private function CheckForJavaScriptInHeading() {
+			$headTags = $this->dom->getElementsByTagName('head');
+			foreach ($headTags as $headTag) {
+				//Check if it has a <script> child
+				$scriptTags = $headTag->getElementsByTagName('script');
+				foreach ($scriptTags as $scriptTag) {
+					$this->resultsRenderBlocking->scriptTagsInHeadResult = "Bad"; //Found
+					return;
+				}
+			}
+			
+			//Set result
+			$this->resultsRenderBlocking->scriptTagsInHeadResult = "Good";
+		}
+		
+		private function CheckForOnLoad() {
+			$bodyTags = $this->dom->getElementsByTagName('body');
+			foreach ($bodyTags as $bodyTag) {
+				//Check if it has onLoad attribute
+				if ($bodyTag->hasAttribute("onLoad")) {
+					$this->resultsRenderBlocking->onLoadResult = "Good"; //Found
+					return;
+				}
+			}
+			
+			//Set result
+			if(preg_match('/[Oo][Nn][Ll][Oo][Aa][Dd]/', $this->originalSiteContents))
+				$this->resultsRenderBlocking->onLoadResult = "Ok";
+			else
+				$this->resultsRenderBlocking->onLoadResult = "Bad";
 		}
 	}
 

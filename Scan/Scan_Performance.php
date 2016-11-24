@@ -53,7 +53,7 @@
 		}
 
 		public function runScan_PageRedirects(){
-			$scanPageRedirects = new Scan_PageRedirects($this->dom);
+			$scanPageRedirects = new Scan_PageRedirects($this->dom, $this->url);
 			return $scanPageRedirects->scan();
 		}
 

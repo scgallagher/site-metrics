@@ -7,10 +7,12 @@
 	class Scan_Security {
 
 		private $dom;
+		private $httpHeader;
 		public $resultsSecurity;
 
-		public function __construct($dom){
+		public function __construct($dom, $httpHeader){
 			$this->dom = $dom;
+			$this->httpHeader = $httpHeader;
 			$this->resultsSecurity = new Results_Security();
 		}
 
@@ -21,7 +23,7 @@
 		}
 
 		private function runScan_SSL(){
-			$scanSSL = new Scan_SSL($this->dom);
+			$scanSSL = new Scan_SSL($this->dom, $httpHeader);
 			return $scanSSL->scan();
 		}
 

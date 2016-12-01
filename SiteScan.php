@@ -32,7 +32,7 @@
 	echo "- Multiple css: " . $resultsRenderBlocking->multipleCssResult . "<br>";
 	echo "- Script in head: " . $resultsRenderBlocking->scriptTagsInHeadResult . "<br>";
 	echo "- onload usage: " . $resultsRenderBlocking->onLoadResult . "<br>";
-	echo "VIEWPORT OPTIMIZATION:<br>"
-	echo $resultsViewportOptimization->usesContentViewport . "<br>";
+	// echo "VIEWPORT OPTIMIZATION:<br>";
+	// echo $resultsViewportOptimization->usesContentViewport . "<br>";
 
 ?>

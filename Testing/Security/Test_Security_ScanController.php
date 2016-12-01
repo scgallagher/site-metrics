@@ -1,16 +1,14 @@
 <?php
 
-	require_once("Data/Results_All.php");
-	require_once("Scan/Scan_SearchEngineOptimizations.php");
-	require_once("Scan/Scan_Mobile.php");
-	require_once("Scan/Scan_Performance.php");
+	//require_once("Data/Results_All.php");
+	chdir("../../");
 	require_once("Scan/Scan_Security.php");
 
 	include_once("firephp-core-0.4.0/lib/FirePHPCore/fb.php");
 
-	class ScanController {
+	class Test_Security_ScanController {
 
-		public $resultsAll;
+		//public $resultsAll;
 
 		private $header;
 		private $source;
@@ -19,7 +17,7 @@
 
 		public function __construct($url){
 			$this->url = $url;
-			$this->resultsAll = new Results_All();
+			//$this->resultsAll = new Results_All();
 
 			$this->header = "";
 			$this->source = "";
@@ -27,34 +25,11 @@
 			FB::info("Inside constructor");
 			$this->getSource();
 			$this->getDOM();
+			echo "--Header--\n\n" . $this->header;
 		}
 
 		public function scan(){
 
-			$this->resultsAll->resultsSearchEngineOptimizations = $this->runScan_SearchEngineOptimizations();
-			$this->resultsAll->resultsMobile = $this->runscan_Mobile();
-			$this->resultsAll->resultsPerformance = $this->runScan_Performance();
-			$this->resultsAll->resultsSecurity = $this->runScan_Security();
-
-			return $this->resultsAll;
-		}
-
-		public function runScan_SearchEngineOptimizations(){
-			$scanSearchEngineOptimizations = new Scan_SearchEngineOptimizations($this->dom);
-			return $scanSearchEngineOptimizations->scan();
-		}
-
-		public function runScan_Mobile(){
-			$scanMobile = new Scan_Mobile($this->dom);
-			return $scanMobile->scan();
-		}
-
-		public function runScan_Performance(){
-			$scanPerformance = new Scan_Performance($this->dom, $this->url);
-			return $scanPerformance->scan($this->dom);
-		}
-
-		public function runScan_Security(){
 			$scanSecurity = new Scan_Security($this->dom, $this->header);
 			return $scanSecurity->scan();
 		}

@@ -40,6 +40,15 @@
 			return strlen($this->metaDescription);
 		}
 
+		private function testPassed(){
+			$count = $this->resultsMetaDescription->charCount;
+			if($this->resultsMetaDescription->hasMetaDescription &&
+				count >= 150 && count <= 160){
+				return true;
+			}
+			return false;
+		}
+
 	}
 
 ?>

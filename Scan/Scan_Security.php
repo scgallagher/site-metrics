@@ -23,7 +23,7 @@
 		}
 
 		private function runScan_SSL(){
-			$scanSSL = new Scan_SSL($this->dom, $httpHeader);
+			$scanSSL = new Scan_SSL($this->dom, $this->httpHeader);
 			return $scanSSL->scan();
 		}
 

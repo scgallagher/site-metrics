@@ -25,7 +25,7 @@
 			FB::info("Inside constructor");
 			$this->getSource();
 			$this->getDOM();
-			echo "--Header--\n\n" . $this->header;
+			//echo "--Header--\n\n" . $this->header;
 		}
 
 		public function scan(){

@@ -9,9 +9,9 @@
 
 		public function __toString(){
 			$output = "";
-			$output .= "Expiration: $this->expiration\n";
+			$output .= "Expiration: " . $this->expiration->format('M j h:i:s Y e'). "\n";
 			$output .= "Issuer: $this->issuer\n";
-			$output .= "Valid: ";
+			$output .= "Verified: ";
 			if($this->isVerified)
 				$output .= "Yes\n";
 			else
@@ -38,8 +38,12 @@
 			//echo $this->httpHeader;
 			$this->resultsSSL->hasCert = $this->getCertInfo();
 			if($this->resultsSSL->hasCert){
-				echo $this->certificate;
+				$this->resultsSSL->certExpired = $this->isExpired($this->certificate->expiration);
+				$this->resultsSSL->issuer = $this->certificate->issuer;
+				$this->resultsSSL->isVerified = $this->certificate->isVerified;
 			}
+			$this->resultsSSL->testPassed = $this->testPassed();
+			echo $this->resultsSSL;
 			return $this->resultsSSL;
 		}
 
@@ -62,8 +66,11 @@
 			$searchQuery = "expire date: ";
 			$index = strpos($this->httpHeader, $searchQuery, $offset) + strlen($searchQuery);
 			$end = strpos($this->httpHeader, "\n", $index);
-			$expiration = substr($this->httpHeader, $index, ($end - $index));
+			$expirationString = substr($this->httpHeader, $index, ($end - $index));
 			//echo "Expiration: $expiration\n";
+			// Test the fuck out of this, I don't trust it
+			$expiration = DateTime::createFromFormat('M  j h:i:s Y e', 	$expirationString);
+			//echo $expiration->format('M j h:i:s Y e') . "\n";
 			return $expiration;
 		}
 
@@ -76,6 +83,10 @@
 			return $issuer;
 		}
 
+		// This verifies certs for nhl.com and github on my Arch Linux machine
+		// but not my Windows PC.  Potential cause is due to known certs on host
+		// so this probably shouldn't be used as a metric since managing client
+		// certs is definitely out of scope.
 		private function isVerified($offset){
 			$searchQuery = "SSL certificate verify ok.";
 			$index = strpos($this->httpHeader, $searchQuery, $offset);
@@ -84,11 +95,27 @@
 			return false;
 		}
 
+		private function isExpired($expiration){
+
+			$now = new DateTime();
+			//echo $expiration->format('M j h:i:s Y e') . "\n";
+
+			if($expiration->diff($now) < 1){
+				return true;
+			}
+			return false;
+		}
+
 		private function testPassed(){
-			// Algorithm
-			// If site has SSL cert and its not expired - pass
-			// Else if site has SSL cert and it is expired - fail
-			// Else if site doesn't have SSL cert - pass/not applicable
+			if(!$this->resultsSSL->hasCert){
+				return "Not Applicable";
+			}
+			else if($this->resultsSSL->certExpired){
+				return false;
+			}
+			else {
+				return true;
+			}
 		}
 
 	}

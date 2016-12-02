@@ -5,8 +5,40 @@
 		public $hasCert;
 		public $certExpired;
 
+		public $issuer;
+		public $isVerified;
+
+		public $testPassed;
+
 		public function __toString(){
 			$output = "";
+
+			if(!hasCert){
+				$output .= "No SSL certificate found\n";
+			}
+			else {
+
+				$output .= "Issuer: $this->issuer\n";
+				$output .= "Expired: ";
+
+				if($this->certExpired)
+					$output .= "Yes\n";
+				else
+					$output .= "No\n";
+
+				$output .= "Verified: ";
+				if($this->isVerified)
+					$output .= "Yes\n";
+				else
+					$output .= "No\n";
+			}
+
+			$output .= "Result: ";
+			if($this->testPassed)
+				$output .= "Pass\n";
+			else
+				$output .= "Fail\n";
+
 			return $output;
 		}
 

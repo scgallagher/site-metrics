@@ -65,8 +65,8 @@
 			$curlHandle = curl_init();
 
 			curl_setopt($curlHandle, CURLOPT_URL, $this->url);
-			// curl_setopt($curlHandle, CURLOPT_SSL_VERIFYPEER, 0);
-			// curl_setopt($curlHandle, CURLOPT_SSL_VERIFYHOST, 0);
+			curl_setopt($curlHandle, CURLOPT_SSL_VERIFYPEER, 0);
+			curl_setopt($curlHandle, CURLOPT_SSL_VERIFYHOST, 0);
 			curl_setopt($curlHandle, CURLOPT_CERTINFO, 1);
 			curl_setopt($curlHandle, CURLOPT_VERBOSE, 1);
 			curl_setopt($curlHandle, CURLOPT_STDERR, $headerText);

@@ -16,6 +16,10 @@
 			return $this->resultsHTTPRequests;
 		}
 
+		public function testPassed(){
+			// If http requests less than 30 - pass
+		}
+
 	}
 
 ?>

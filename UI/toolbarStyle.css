@@ -1,0 +1,59 @@
+.toolbarButton {
+    border: 1px solid transparent;
+    border-radius: 4px;
+	cursor: pointer;
+}
+
+#sitescan_toolbar {
+	/*text-shadow: 0px 1px 1px rba(0,0,0,.4);*/
+	text-decoration: none;
+	font-family: 'Open Sans','Helvetica','Arial',sans-serif;
+	-webkit-font-smoothing: antialiased;
+	-moz-font-smoothing: antialiased;
+	/*font-smoothing: antialiased;*/
+
+	background: rgba(153, 214, 255, .25);
+
+	display: inline;
+	padding: .5em;
+}
+
+	#sitescan_toolbar #toggle_button {
+		border: none;
+		background: none;
+		outline: none;
+	}
+		#sitescan_toolbar #toggle_button #toggleIcon {
+			color: whitesmoke;
+		}
+		#sitescan_toolbar #toggle_button #toggleIconBkgrnd {
+			color: #4a9cba;
+		}
+			#sitescan_toolbar #toggle_button span:hover #toggleIconBkgrnd {
+				color: #3990b0;
+			}
+		#sitescan_toolbar #toggle_button:disabled {
+			cursor: not-allowed;
+		}
+			#sitescan_toolbar #toggle_button:disabled #toggleIcon {
+				color: lightgrey;
+			}
+			#sitescan_toolbar #toggle_button:disabled #toggleIconBkgrnd {
+				color: grey!important;
+			}
+
+	#sitescan_toolbar #content {
+		display: inline;
+	}
+
+		#sitescan_toolbar #content #message {
+		}
+
+		#sitescan_toolbar #content #scanTarget_input {
+		}
+
+		#sitescan_toolbar #content #scan_button {
+			color: whitesmoke;
+			border-color: #3990b0;
+			background-color: #4a9cba;
+		}

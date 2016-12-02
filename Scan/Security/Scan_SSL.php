@@ -35,7 +35,7 @@
 		}
 
 		public function scan(){
-			//echo $this->httpHeader;
+			echo $this->httpHeader;
 			$this->resultsSSL->hasCert = $this->getCertInfo();
 			if($this->resultsSSL->hasCert){
 				$this->resultsSSL->certExpired = $this->isExpired($this->certificate->expiration);
@@ -67,7 +67,6 @@
 			$index = strpos($this->httpHeader, $searchQuery, $offset) + strlen($searchQuery);
 			$end = strpos($this->httpHeader, "\n", $index);
 			$expirationString = substr($this->httpHeader, $index, ($end - $index));
-			//echo "Expiration: $expiration\n";
 			// Test the fuck out of this, I don't trust it
 			$expiration = DateTime::createFromFormat('M  j h:i:s Y e', 	$expirationString);
 			//echo $expiration->format('M j h:i:s Y e') . "\n";

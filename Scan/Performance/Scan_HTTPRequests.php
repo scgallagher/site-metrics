@@ -23,9 +23,15 @@
 			// count stylesheets
 			$count += $this->countStylesheets();
 			// count scripts
-			$count += $this->countScripts();
+			$count += $this->countByAttribute("script", "src");
 			// count images
-			$count += $this->countImages();
+			$count += $this->countByAttribute("img", "src");
+			// count embed tags
+			$count += $this->countByAttribute("embed", "src");
+			// count object tags
+			$count += $this->countByAttribute("object", "data");
+			//count video tags
+			$count += $this->countTags("video");
 			return $count;
 		}
 
@@ -65,6 +71,26 @@
 				}
 			}
 			echo "Image Count: $count\n";
+			return $count;
+		}
+
+		public function countByAttribute($tag, $attr){
+			$count = 0;
+			$list = $this->dom->getElementsByTagName($tag);
+			foreach($list as $item){
+				if($item->hasAttribute($attr)){
+					$count++;
+				}
+			}
+			echo "$tag count: $count\n";
+			return $count;
+		}
+
+		public function countTags($tag){
+			$count = 0;
+			$list = $this->dom->getElementsByTagName($tag);
+			$count = $list->length;
+			echo "$tag count: $count\n";
 			return $count;
 		}
 

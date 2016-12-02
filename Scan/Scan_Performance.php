@@ -22,13 +22,14 @@
 		}
 
 		public function scan(){
-			$this->resultsPerformance->resultsBrowserCaching = $this->runScan_BrowserCaching();
-			$this->resultsPerformance->resultsCompression = $this->runScan_Compression();
+
+			// $this->resultsPerformance->resultsBrowserCaching = $this->runScan_BrowserCaching();
+			// $this->resultsPerformance->resultsCompression = $this->runScan_Compression();
 			$this->resultsPerformance->resultsHTTPRequests = $this->runScan_HTTPRequests();
-			$this->resultsPerformance->resultsPageLoad = $this->runScan_PageLoad();
-			$this->resultsPerformance->resultsPageRedirects = $this->runScan_PageRedirects();
-			$this->resultsPerformance->resultsPageSize = $this->runScan_PageSize();
-			$this->resultsPerformance->resultsRenderBlocking = $this->runScan_RenderBlocking();
+			// $this->resultsPerformance->resultsPageLoad = $this->runScan_PageLoad();
+			// $this->resultsPerformance->resultsPageRedirects = $this->runScan_PageRedirects();
+			// $this->resultsPerformance->resultsPageSize = $this->runScan_PageSize();
+			// $this->resultsPerformance->resultsRenderBlocking = $this->runScan_RenderBlocking();
 			return $this->resultsPerformance;
 		}
 

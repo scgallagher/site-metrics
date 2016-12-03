@@ -1,4 +1,5 @@
 <?php
+//
 	ini_set('display_errors', 'Off');
 	error_reporting(E_ALL & ~E_WARNING & ~E_NOTICE);
 	require_once("Scan/ScanController.php");
@@ -18,9 +19,9 @@
 	$resultsRenderBlocking = $resultsAll->resultsPerformance->resultsRenderBlocking;
 	$resultsViewportOptimization = $resultsAll->resultsMobile->resultsViewportOptimization;
 
-	// echo "-- Page Title -- <br>";
-	// echo "Character Count: " . $resultsTitle->charCount . "<br>";
-	// echo "<br>";
+	echo "-- Page Title -- <br>";
+	echo "Character Count: " . $resultsTitle->charCount . "<br>";
+	echo "<br>";
 	echo $resultsTitle . "<br>";
 	echo $resultsHeading . "<br>";
 	echo "Compression: " . $resultsCompression->compressionResult . " (" . round($resultsCompression->compressionPercentage, 2) . "% able to be compressed)<br>";

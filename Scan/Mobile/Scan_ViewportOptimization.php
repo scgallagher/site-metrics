@@ -16,7 +16,7 @@
 		}
 
 		public function scan(){
-			FB::log("entered scan!");
+			//FB::info("entered scan!");
 			$this->CheckforContentViewport();
 			//return results
 			return $this->resultsViewportOptimization;
@@ -24,7 +24,7 @@
 
 		private function CheckforContentViewport(){
 			$metaTags = $this->dom->getElementsByTagName("meta");
-			FB::log("got tags!");
+			//FB::log("got tags!");
 			foreach ($metaTags as $metaTag) {
 				if($metaTag->hasAttribute("content")){
 					$metaContents = $metaTag->getAttribute("content");
@@ -33,9 +33,11 @@
 						$this->resultsViewportOptimization->usesContentViewport = "Viewport optimization enabled.";
 						}
 				}
+			}
+			//if not found, it is not enabled
+			$this->resultsViewportOptimization->usesContentViewport = "Viewport optimization is not enabled.";
 		}
-		//if not found, it is not enabled
-		$this->resultsViewportOptimization->usesContentViewport = "Viewport optimization is not enabled.";
+
 	}
 
 ?>

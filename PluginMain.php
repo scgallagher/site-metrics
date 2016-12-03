@@ -6,17 +6,17 @@
 	*/
 
 	//chdir("/home/sean/site-scan/");
-	//add_action('admin_footer', 'wp_footer_callback');
-	//add_action('wp_footer', 'wp_footer_callback');
+	add_action('admin_footer', 'wp_footer_callback');
+	add_action('wp_footer', 'wp_footer_callback');
 
-	add_action('admin_head', 'load_js');
-	add_action('wp_head', 'load_js');
+	// add_action('admin_head', 'load_js');
+	// add_action('wp_head', 'load_js');
+	//
+	// add_action('admin_head', 'load_css');
+	// add_action('wp_head', 'load_css');
 
-	add_action('admin_head', 'load_css');
-	add_action('wp_head', 'load_css');
-
-	add_action('admin_footer', 'load_html');
-  add_action('wp_footer', 'load_html');
+	// add_action('admin_footer', 'load_html');
+  // add_action('wp_footer', 'load_html');
 
 	function wp_footer_callback(){
 

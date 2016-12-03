@@ -10,20 +10,40 @@
 		private $non_prepared_statements = 0;
 		private $prepared_statements = 0;
 
-		public function __construct($dom){
+		private $url;
+
+		public function __construct($dom, $url){
 			$this->dom = $dom;
+			$this->url = $url;
 			$this->resultsSQLInjection = new Results_SQLInjection();
 		}
 
 		public function scan(){
 			chdir("../../../");
-			$this->crawl(getcwd(), 0);
-			//echo getcwd() . "\n";
-			//$this->searchPHP("wp-content/plugins/site-metrics/Testing/Security/TestData/SQLInjection_Test1.php");
-			$this->resultsSQLInjection->prepared_statements = $this->prepared_statements;
-			$this->resultsSQLInjection->non_prepared_statements = $this->non_prepared_statements;
+			$isLocal = $this->isLocal();
+			if(!$isLocal){
+				$this->resultsSQLInjection->isLocal = false;
+				$this->resultsSQLInjection->testPassed = true;
+			}
+			else {
+				$this->resultsSQLInjection->isLocal = true;
+				$this->crawl(getcwd(), 0);
+				//echo getcwd() . "\n";
+				//$this->searchPHP("wp-content/plugins/site-metrics/Testing/Security/TestData/SQLInjection_Test1.php");
+				$this->resultsSQLInjection->prepared_statements = $this->prepared_statements;
+				$this->resultsSQLInjection->non_prepared_statements = $this->non_prepared_statements;
+				$this->resultsSQLInjection->testPassed = $this->testPassed();
+			}
 			echo $this->resultsSQLInjection;
 			return $this->resultsSQLInjection;
+		}
+
+		private function isLocal(){
+			if(preg_match('/^(http:\/\/|https:\/\/)*localhost/', $this->url) ||
+				preg_match('/^(http:\/\/|https:\/\/)*127\.0\.0\.1/', $this->url)){
+				return true;
+			}
+			return false;
 		}
 
 		private function crawl($target, $depth){
@@ -86,6 +106,20 @@
 				return true;
 			}
 			return false;
+		}
+
+		private function testPassed(){
+			$prepared = $this->resultsSQLInjection->prepared_statements;
+			$nonPrepared = $this->resultsSQLInjection->non_prepared_statements;
+			if($prepared == 0 && $nonPrepared == 0){
+				return "Not Applicable";
+			}
+			else if($nonPrepared > 0){
+				return false;
+			}
+			else {
+				return true;
+			}
 		}
 
 	}

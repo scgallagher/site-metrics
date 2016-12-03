@@ -29,8 +29,7 @@
 		}
 
 		public function scan(){
-
-			$scanSecurity = new Scan_Security($this->dom, $this->header);
+			$scanSecurity = new Scan_Security($this->dom, $this->header, $this->url);
 			return $scanSecurity->scan();
 		}
 

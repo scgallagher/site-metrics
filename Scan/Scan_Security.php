@@ -8,10 +8,12 @@
 
 		private $dom;
 		private $httpHeader;
+		private $url;
 		public $resultsSecurity;
 
-		public function __construct($dom, $httpHeader){
+		public function __construct($dom, $httpHeader, $url){
 			$this->dom = $dom;
+			$this->url = $url;
 			$this->httpHeader = $httpHeader;
 			$this->resultsSecurity = new Results_Security();
 		}
@@ -28,7 +30,7 @@
 		}
 
 		private function runScan_SQLInjection(){
-			$scanSQLInjection = new Scan_SQLInjection($this->dom);
+			$scanSQLInjection = new Scan_SQLInjection($this->dom, $this->url);
 			return $scanSQLInjection->scan();
 		}
 

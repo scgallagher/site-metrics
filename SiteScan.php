@@ -3,7 +3,7 @@
 	ini_set('display_errors', 'Off');
 	error_reporting(E_ALL & ~E_WARNING & ~E_NOTICE);
 	require_once("Scan/ScanController.php");
-	include_once("firephp-core-0.4.0/lib/FirePHPCore/fb.php");
+	// include_once("firephp-core-0.4.0/lib/FirePHPCore/fb.php");
 
 	//$scanController = new ScanController("http://localhost/wordpress/");
 	//$scanController = new ScanController("https://www.nhl.com");
@@ -33,7 +33,7 @@
 	echo "- Multiple css: " . $resultsRenderBlocking->multipleCssResult . "<br>";
 	echo "- Script in head: " . $resultsRenderBlocking->scriptTagsInHeadResult . "<br>";
 	echo "- onload usage: " . $resultsRenderBlocking->onLoadResult . "<br>";
-	// echo "VIEWPORT OPTIMIZATION:<br>";
-	// echo $resultsViewportOptimization->usesContentViewport . "<br>";
+	echo "VIEWPORT OPTIMIZATION:<br>";
+	echo $resultsViewportOptimization->usesContentViewport . "<br>";
 
 ?>

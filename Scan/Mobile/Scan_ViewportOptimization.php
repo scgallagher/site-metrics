@@ -16,7 +16,7 @@
 		}
 
 		public function scan(){
-			//FB::info("entered scan!");
+			FB::log("entered scan!");
 			$this->CheckforContentViewport();
 			//return results
 			return $this->resultsViewportOptimization;
@@ -24,7 +24,7 @@
 
 		private function CheckforContentViewport(){
 			$metaTags = $this->dom->getElementsByTagName("meta");
-			//FB::log("got tags!");
+			FB::log("got tags!");
 			foreach ($metaTags as $metaTag) {
 				if($metaTag->hasAttribute("content")){
 					$metaContents = $metaTag->getAttribute("content");

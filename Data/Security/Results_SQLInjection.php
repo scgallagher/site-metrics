@@ -18,6 +18,7 @@
 
 		public function __toString(){
 			$output = "";
+			$output .= "\n--Scan: Security - SQL Injection--\n";
 			$output .= "Prepared Statements: $this->prepared_statements\n";
 			$output .= "Non-Prepared Statements: $this->non_prepared_statements\n";
 			return $output;

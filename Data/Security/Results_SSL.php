@@ -13,7 +13,8 @@
 		public function __toString(){
 			$output = "";
 
-			if(!hasCert){
+			$output .= "\n--Scan: Security - SSL--\n";
+			if(!$this->hasCert){
 				$output .= "No SSL certificate found\n";
 			}
 			else {

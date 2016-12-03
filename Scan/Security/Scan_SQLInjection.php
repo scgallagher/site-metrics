@@ -17,8 +17,9 @@
 
 		public function scan(){
 			chdir("../../../");
-			//$this->crawl(getcwd());
-			$this->searchPHP("C:\Users\Sean\Downloads\seancg_project3-1\project3_final\DataManager.php");
+			$this->crawl(getcwd(), 0);
+			//echo getcwd() . "\n";
+			//$this->searchPHP("wp-content/plugins/site-metrics/Testing/Security/TestData/SQLInjection_Test1.php");
 			$this->resultsSQLInjection->prepared_statements = $this->prepared_statements;
 			$this->resultsSQLInjection->non_prepared_statements = $this->non_prepared_statements;
 			echo $this->resultsSQLInjection;
@@ -36,6 +37,7 @@
 			if(preg_match('/^[a-zA-Z0-9_\\-\\/\\\\:]+.php$/', $target)){
 				//echo $target . "\n";
 				// scan the file
+				$this->searchPHP($target);
 			}
 			// if target is a directory - call crawl on each child
 			if(is_dir($target)){
@@ -43,7 +45,7 @@
     			while (($file = readdir($dh)) !== false){
       			//echo "$target/$file\n";
 						//echo "$indent$file\n";
-						if($file != "." && $file != ".."){
+						if(!$this->whitelisted($file)){
 							$this->crawl("$target/$file", $depth);
 						} // end if
     			} // end while
@@ -53,18 +55,37 @@
 			// at this point, target is a non-php file, just return
 		}
 
+		// Note: at the moment, this function does not consider Wordpress core
+		// files as whitelisted because the user can edit them. (Exception: wp-db.php)
 		private function searchPHP($target){
-			$fh = fopen($target, "r");
+
+			if(!($fh = @fopen($target, "r"))){
+				// file failed to open - perhaps log this?
+				echo "ERROR: failed to open file $target\n";
+				return;
+			}
 			while(!feof($fh)){
 				$line = fgets($fh);
-				if(preg_match('/mysql_query/', $line) || preg_match('/mysqli_query/', $line)){
+				if(preg_match('/mysql_query\\(/', $line) || preg_match('/mysqli_query\\(/', $line)){
+					//|| preg_match('/query\\(/', $line) || preg_match('/exec\\(/', $line)){
+						//echo $line . "\n";
+						//echo "$target\n";
 					$this->non_prepared_statements++;
 				}
 				else if(preg_match('/prepare\\(/', $line)){
+					//echo $line . "\n";
+					//echo "$target\n";
 					$this->prepared_statements++;
 				}
 			}
 			fclose($fh);
+		}
+
+		private function whitelisted($target){
+			if($target == "." || $target == ".." || $target == "wp-db.php"){
+				return true;
+			}
+			return false;
 		}
 
 	}

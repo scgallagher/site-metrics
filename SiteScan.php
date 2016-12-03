@@ -5,6 +5,8 @@
 	require_once("Scan/ScanController.php");
 	// include_once("firephp-core-0.4.0/lib/FirePHPCore/fb.php");
 
+	$email = $_GET["email"];
+
 	//$scanController = new ScanController("http://localhost/wordpress/");
 	//$scanController = new ScanController("https://www.nhl.com");
 	//$scanController = new ScanController("http://www.apple.com/imac");
@@ -18,6 +20,8 @@
 	$resultsPageSize = $resultsAll->resultsPerformance->resultsPageSize;
 	$resultsRenderBlocking = $resultsAll->resultsPerformance->resultsRenderBlocking;
 	$resultsViewportOptimization = $resultsAll->resultsMobile->resultsViewportOptimization;
+
+	echo $email. "<br>";
 
 	echo "-- Page Title -- <br>";
 	echo "Character Count: " . $resultsTitle->charCount . "<br>";

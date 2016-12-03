@@ -5,7 +5,6 @@
 		Description: Scans your wordpress site and rates it based on various metrics.
 	*/
 
-	//chdir("/home/sean/site-scan/");
 	add_action('admin_footer', 'wp_footer_callback');
 	add_action('wp_footer', 'wp_footer_callback');
 
@@ -19,8 +18,8 @@
   // add_action('wp_footer', 'load_html');
 
 	function wp_footer_callback(){
-
-		echo "<script>window.open(\"wp-content/plugins/site-metrics/scan-interface.html\");</script>";
+	 	$email = get_bloginfo('admin_email');
+		echo "<script>window.open(\"wp-content/plugins/site-metrics/scan-interface.html?email=" . $email . "\");</script>";
 	}
 
 	function load_js(){

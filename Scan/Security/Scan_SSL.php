@@ -35,7 +35,7 @@
 		}
 
 		public function scan(){
-			echo $this->httpHeader;
+			//echo $this->httpHeader;
 			$this->resultsSSL->hasCert = $this->getCertInfo();
 			if($this->resultsSSL->hasCert){
 				$this->resultsSSL->certExpired = $this->isExpired($this->certificate->expiration);

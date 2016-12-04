@@ -7,10 +7,10 @@
 
 	$email = $_GET["email"];
 
-	//$scanController = new ScanController("http://localhost/wordpress/");
+	$scanController = new ScanController("http://localhost/wordpress/");
 	//$scanController = new ScanController("https://www.nhl.com");
 	//$scanController = new ScanController("http://www.apple.com/imac");
-	$scanController = new ScanController("http://www.google.com");
+	//$scanController = new ScanController("http://www.google.com");
 	$resultsAll = $scanController->scan();
 
 	$resultsTitle = $resultsAll->resultsSearchEngineOptimizations->resultsPageTitle;

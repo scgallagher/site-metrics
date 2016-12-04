@@ -28,14 +28,16 @@
 			foreach ($metaTags as $metaTag) {
 				if($metaTag->hasAttribute("content")){
 					$metaContents = $metaTag->getAttribute("content");
-					if(($metaContents == "width=device-width, initial-scale=1.0") || ($metaContents == "width=device-width, initial-scale=1")){
+					if(preg_match('/width\s*=\s*device-width/', $metaContents) && preg_match('/initial-scale\s*=\s*(1\.0|1)/', $metaContents)){
 						//found, is enabled
 						$this->resultsViewportOptimization->usesContentViewport = "Viewport optimization enabled.";
+						return;
 						}
 				}
 			}
 			//if not found, it is not enabled
 			$this->resultsViewportOptimization->usesContentViewport = "Viewport optimization is not enabled.";
+			return;
 		}
 
 	}

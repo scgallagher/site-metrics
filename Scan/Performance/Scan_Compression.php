@@ -6,17 +6,20 @@
 
 		private $dom;
 		private $url;
+		private $originalRawHTML;
 		private $resultsCompression;
 
-		public function __construct($dom, $url){
+		public function __construct($dom, $url, $originalRawHTML){
 			$this->dom = $dom;
 			$this->url = $url;
+			$this->originalRawHTML = $originalRawHTML;
 			$this->resultsCompression = new Results_Compression();
 		}
 
 		public function scan(){
 			//Read in webpage
-			$originalSiteContents = file_get_contents($this->url); //$testString = "I♥NY";
+			//$originalSiteContents = file_get_contents($this->url); //$testString = "I♥NY";
+			$originalSiteContents = $this->originalRawHTML;
 			
 			//Check for simple compression
 			$originalSizeInBytes = strlen($originalSiteContents);

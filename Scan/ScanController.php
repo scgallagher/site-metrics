@@ -50,7 +50,7 @@
 		}
 
 		public function runScan_Performance(){
-			$scanPerformance = new Scan_Performance($this->dom, $this->url);
+			$scanPerformance = new Scan_Performance($this->dom, $this->url, $this->source);
 			return $scanPerformance->scan($this->dom);
 		}
 

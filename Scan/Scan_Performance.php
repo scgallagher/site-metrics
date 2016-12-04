@@ -13,23 +13,25 @@
 
 		private $dom;
 		private $url;
+		private $originalRawHTML;
 		public $resultsPerformance;
 
-		public function __construct($dom, $url){
+		public function __construct($dom, $url, $source){
 			$this->dom = $dom;
 			$this->url = $url;
+			$this->originalRawHTML = $source;
 			$this->resultsPerformance = new Results_Performance();
 		}
 
 		public function scan(){
 
-			// $this->resultsPerformance->resultsBrowserCaching = $this->runScan_BrowserCaching();
-			// $this->resultsPerformance->resultsCompression = $this->runScan_Compression();
+			$this->resultsPerformance->resultsBrowserCaching = $this->runScan_BrowserCaching();
+			$this->resultsPerformance->resultsCompression = $this->runScan_Compression();
 			$this->resultsPerformance->resultsHTTPRequests = $this->runScan_HTTPRequests();
-			// $this->resultsPerformance->resultsPageLoad = $this->runScan_PageLoad();
-			// $this->resultsPerformance->resultsPageRedirects = $this->runScan_PageRedirects();
-			// $this->resultsPerformance->resultsPageSize = $this->runScan_PageSize();
-			// $this->resultsPerformance->resultsRenderBlocking = $this->runScan_RenderBlocking();
+			$this->resultsPerformance->resultsPageLoad = $this->runScan_PageLoad();
+			$this->resultsPerformance->resultsPageRedirects = $this->runScan_PageRedirects();
+			$this->resultsPerformance->resultsPageSize = $this->runScan_PageSize();
+			$this->resultsPerformance->resultsRenderBlocking = $this->runScan_RenderBlocking();
 			return $this->resultsPerformance;
 		}
 
@@ -39,7 +41,7 @@
 		}
 
 		public function runScan_Compression(){
-			$scanCompresion = new Scan_Compression($this->dom, $this->url);
+			$scanCompresion = new Scan_Compression($this->dom, $this->url, $this->originalRawHTML);
 			return $scanCompresion->scan();
 		}
 
@@ -59,12 +61,12 @@
 		}
 
 		public function runScan_PageSize(){
-			$scanPageSize = new Scan_PageSize($this->dom, $this->url);
+			$scanPageSize = new Scan_PageSize($this->dom, $this->url, $this->originalRawHTML);
 			return $scanPageSize->scan();
 		}
 
 		public function runScan_RenderBlocking(){
-			$scanRenderBlocking = new Scan_RenderBlocking($this->dom, $this->url);
+			$scanRenderBlocking = new Scan_RenderBlocking($this->dom, $this->url, $this->originalRawHTML);
 			return $scanRenderBlocking->scan();
 		}
 

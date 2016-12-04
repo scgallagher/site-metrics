@@ -6,17 +6,20 @@
 
 		private $dom;
 		private $url;
+		private $originalRawHTML;
 		private $resultsPageSize;
 
-		public function __construct($dom, $url){
+		public function __construct($dom, $url, $originalRawHTML){
 			$this->dom = $dom;
 			$this->url = $url;
+			$this->originalRawHTML = $originalRawHTML;
 			$this->resultsPageSize = new Results_PageSize();
 		}
 
 		public function scan(){
 			//Read in webpage
-			$originalSiteContents = file_get_contents($this->url); //$testString = "I♥NY";
+			//$originalSiteContents = file_get_contents($this->url); //$testString = "I♥NY";
+			$originalSiteContents = $this->originalRawHTML;
 			
 			//Get size
 			$this->resultsPageSize->pageSizeInBytes = strlen($originalSiteContents);

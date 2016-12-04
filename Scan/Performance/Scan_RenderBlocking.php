@@ -10,13 +10,15 @@
 		
 		private $originalSiteContents;
 
-		public function __construct($dom, $url){
+		public function __construct($dom, $url, $originalRawHTML){
 			$this->dom = $dom;
 			$this->url = $url;
+			$this->originalSiteContents = $originalRawHTML;
 			$this->resultsRenderBlocking = new Results_RenderBlocking();
 		}
 
 		public function scan(){
+			//$this->originalSiteContents = file_get_contents($this->url);
 			$this->originalSiteContents = file_get_contents($this->url);
 			
 			//Check for CSS @import

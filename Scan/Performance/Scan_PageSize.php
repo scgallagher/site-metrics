@@ -20,10 +20,10 @@
 			//Read in webpage
 			//$originalSiteContents = file_get_contents($this->url); //$testString = "I♥NY";
 			$originalSiteContents = $this->originalRawHTML;
-			
+
 			//Get size
 			$this->resultsPageSize->pageSizeInBytes = strlen($originalSiteContents);
-			
+
 			//Set results
 			if ($this->resultsPageSize->pageSizeInBytes < 0)
 				$this->resultsPageSize->pageSizeResult = "ERROR";
@@ -33,8 +33,19 @@
 				$this->resultsPageSize->pageSizeResult = "Ok";
 			else
 				$this->resultsPageSize->pageSizeResult = "Bad";
-			
+
+				$this->resultsPageSize->testPassed = $this->testPassed();
 			return $this->resultsPageSize;
+		}
+
+		public function testPassed()
+		{
+			if (strtolower($this->resultsPageSize->pageSizeResult) == "good")
+			{
+				return true;
+			}
+
+			return false;
 		}
 
 	}

@@ -1,10 +1,11 @@
 <?php
 
 	class Results_PageRedirects {
-		
+
 		//General Metric(s)
 		public $redirectsResult;
-		
+		public $testPassed;
+
 		//Specific Metric(s)
 		public $redirectCount;
 
@@ -12,15 +13,12 @@
 			$output = "";
 			return $output;
 		}
-		
-		public function testPassed()
-		{
-			if (strtolower($this->redirectsResult) == "good")
-			{
-				return true;
-			}
-			
-			return false;
+
+		public function parseJSON(){
+			$results = array();
+			$results["testPassed"] = $this->testPassed;
+			$results["redirectsResult"] = $this->redirectsResult;
+			return $results;
 		}
 
 	}

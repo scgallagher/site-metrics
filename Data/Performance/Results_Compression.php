@@ -1,10 +1,11 @@
 <?php
 
 	class Results_Compression {
-		
+
 		//General Metric(s)
 		public $compressionResult;
-		
+		public $testPassed;
+
 		//Specific Metric(s)
 		public $compressionPercentage;
 
@@ -12,15 +13,12 @@
 			$output = "";
 			return $output;
 		}
-		
-		public function testPassed()
-		{
-			if (strtolower($this->compressionResult) == "good")
-			{
-				return true;
-			}
-			
-			return false;
+
+		public function parseJSON(){
+			$results = array();
+			$results["testPassed"] = $this->testPassed;
+			$results["compressionResult"] = $this->compressionResult;
+			return $results;
 		}
 
 	}

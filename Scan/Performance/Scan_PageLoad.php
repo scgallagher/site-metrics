@@ -13,7 +13,12 @@
 		}
 
 		public function scan(){
+			$this->resultsPageLoad->testPassed = $this->testPassed();
 			return $this->resultsPageLoad;
+		}
+
+		public function testPassed(){
+			return false;
 		}
 
 	}

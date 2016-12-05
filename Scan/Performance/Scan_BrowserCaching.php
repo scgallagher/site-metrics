@@ -13,7 +13,12 @@
 		}
 
 		public function scan(){
+			$this->resultsBrowserCaching->testPassed = $this->testPassed();
 			return $this->resultsBrowserCaching;
+		}
+
+		public function testPassed(){
+			return false;
 		}
 
 	}

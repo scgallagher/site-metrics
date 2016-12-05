@@ -20,7 +20,7 @@
 			//Read in webpage
 			//$originalSiteContents = file_get_contents($this->url); //$testString = "I♥NY";
 			$originalSiteContents = $this->originalRawHTML;
-			
+
 			//Check for simple compression
 			$originalSizeInBytes = strlen($originalSiteContents);
 			$compressedSizeInBytes = strlen(preg_replace('/\s+/', '', $originalSiteContents));
@@ -28,7 +28,7 @@
 				$this->resultsCompression->compressionPercentage = (($originalSizeInBytes - $compressedSizeInBytes) / $originalSizeInBytes) * 100;
 			else
 				$this->resultsCompression->compressionPercentage = -1;
-			
+
 			//Set result
 			if ($this->resultsCompression->compressionPercentage < 0)
 				$this->resultsCompression->compressionResult = "ERROR";
@@ -38,10 +38,21 @@
 				$this->resultsCompression->compressionResult = "Ok";
 			else
 				$this->resultsCompression->compressionResult = "Bad";
-			
+
+				$this->resultsCompression->testPassed = $this->testPassed();
 			//Return result
 			//echo "<br>Compression: " . $this->resultsCompression->compressionResult . " " . $this->resultsCompression->compressionPercentage . "<br>";
 			return $this->resultsCompression;
+		}
+
+		public function testPassed()
+		{
+			if (strtolower($this->resultsCompression->compressionResult) == "good")
+			{
+				return true;
+			}
+
+			return false;
 		}
 
 	}

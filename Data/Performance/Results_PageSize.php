@@ -1,10 +1,11 @@
 <?php
 
 	class Results_PageSize {
-		
+
 		//General Metric(s)
 		public $pageSizeResult;
-		
+		public $testPassed;
+
 		//Specific Metric(s)
 		public $pageSizeInBytes;
 
@@ -12,15 +13,12 @@
 			$output = "";
 			return $output;
 		}
-		
-		public function testPassed()
-		{
-			if (strtolower($this->pageSizeResult) == "good")
-			{
-				return true;
-			}
-			
-			return false;
+
+		public function parseJSON(){
+			$results = array();
+			$results["testPassed"] = $this->testPassed;
+			$results["pageSizeResult"] = $this->pageSizeResult;
+			return $results;
 		}
 
 	}

@@ -15,6 +15,7 @@
 		public function scan(){
 			$this->resultsHTTPRequests->requestCount = $this->countRequests();
 			//echo $this->resultsHTTPRequests;
+			$this->resultsHTTPRequests->testPassed = $this->testPassed();
 			return $this->resultsHTTPRequests;
 		}
 

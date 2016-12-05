@@ -8,6 +8,7 @@
 		public function parseJSON(){
 			$results = array();
 			$results["testPassed"] = $this->testPassed;
+			$results["usesContentViewport"] = $this->usesContentViewport;
 			return $results;
 		}
 

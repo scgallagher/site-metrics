@@ -26,7 +26,7 @@
 				$endUrl = $this->GetRedirectedUrl($startUrl);
 			}
 			//echo "<br>Final: " . $this->url . " --> " . $endUrl . "<br>";
-			
+
 			//Set results
 			$this->resultsPageRedirects->redirectCount = $redirectCount;
 			if ($redirectCount == 0)
@@ -37,14 +37,15 @@
 				$this->resultsPageRedirects->redirectsResult = "Bad";
 			else
 				$this->resultsPageRedirects->redirectsResult = "ERROR";
-			
+
+				$this->resultsPageRedirects->testPassed = $this->testPassed();
 			//Return results
 			return $this->resultsPageRedirects;
 		}
-		
+
 		public function GetRedirectedUrl($startUrl) {
 			$endUrl = $startUrl;
-			
+
 			$ch = curl_init();
 
 			curl_setopt($ch, CURLOPT_HEADER, true);
@@ -56,7 +57,7 @@
 
 			// In the header, check for new location
 			$headers_end = strpos($out, "\n\n");
-			if( $headers_end !== false ) { 
+			if( $headers_end !== false ) {
 				$out = substr($out, 0, $headers_end);
 			}
 			$headers = explode("\n", $out);
@@ -67,8 +68,18 @@
 					break;
 				}
 			}
-			
+
 			return $endUrl;
+		}
+
+		public function testPassed()
+		{
+			if (strtolower($this->resultsPageRedirects->redirectsResult) == "good")
+			{
+				return true;
+			}
+
+			return false;
 		}
 	}
 

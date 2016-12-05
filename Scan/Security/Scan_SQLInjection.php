@@ -23,7 +23,7 @@
 			$isLocal = $this->isLocal();
 			if(!$isLocal){
 				$this->resultsSQLInjection->isLocal = false;
-				$this->resultsSQLInjection->testPassed = true;
+				//$this->resultsSQLInjection->testPassed = true;
 			}
 			else {
 				$this->resultsSQLInjection->isLocal = true;
@@ -32,8 +32,8 @@
 				//$this->searchPHP("wp-content/plugins/site-metrics/Testing/Security/TestData/SQLInjection_Test1.php");
 				$this->resultsSQLInjection->prepared_statements = $this->prepared_statements;
 				$this->resultsSQLInjection->non_prepared_statements = $this->non_prepared_statements;
-				$this->resultsSQLInjection->testPassed = $this->testPassed();
 			}
+			$this->resultsSQLInjection->testPassed = $this->testPassed();
 			//echo $this->resultsSQLInjection;
 			return $this->resultsSQLInjection;
 		}

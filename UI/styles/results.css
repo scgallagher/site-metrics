@@ -26,6 +26,7 @@ span {
   font-size: calc(3vw + 3vh);
   font-variant: small-caps;
   color: black;
+  height: parent;
 }
 
 .pass {
@@ -37,8 +38,18 @@ span {
 }
 
 .na {
-  font-size: calc(2vw + 2vh);
+  /*font-size: calc(2vw + 2vh);*/
+  background-color: blue;
 }
+
+/*.na {
+  font-size: calc(2vw + 2vh);
+  background-color: blue;
+  padding: 0;
+  padding-top: 15%;
+  border-bottom-left-radius: .7em;
+  border-bottom-right-radius: .7em;
+}*/
 
 .divResults {
   position: absolute;

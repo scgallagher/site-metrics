@@ -77,6 +77,7 @@
 			while(strlen($this->header .= fread($headerText, 8192)) == 8192);
 			// $header now contains header information for the curl
 			// operation that can be parsed to get size and load time
+			FB::info($this->header);
 			curl_close($curlHandle);
 
 		}

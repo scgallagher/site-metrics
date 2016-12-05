@@ -72,8 +72,8 @@ function update_security_ssl(result){
 		$("#pf_ssl").text("fail");
 	}
 	else {
-		$("#pf_ssl").addClass("na");
-		$("#pf_ssl").text(passed);
+		$("#pf_ssl").parent().addClass("na");
+		$("#pf_ssl").text("n/a");
 	}
 }
 
@@ -92,7 +92,7 @@ function update_security_sqlInjection(result){
 	}
 	else {
 		$("#pf_sqlInjection").parent().addClass("na");
-		$("#pf_sqlInjection").text(passed);
+		$("#pf_sqlInjection").text("n/a");
 	}
 }
 
@@ -114,7 +114,7 @@ function update_seo_heading(result){
 	}
 	else {
 		$("#pf_heading").parent().addClass("na");
-		$("#pf_heading").text(passed);
+		$("#pf_heading").text("n/a");
 	}
 }
 
@@ -133,7 +133,7 @@ function update_seo_metaDescription(result){
 	}
 	else {
 		$("#pf_metaDescription").parent().addClass("na");
-		$("#pf_metaDescription").text(passed);
+		$("#pf_metaDescription").text("n/a");
 	}
 }
 
@@ -152,7 +152,7 @@ function update_seo_pageTitle(result){
 	}
 	else {
 		$("#pf_pageTitle").parent().addClass("na");
-		$("#pf_pageTitle").text(passed);
+		$("#pf_pageTitle").text("n/a");
 	}
 }
 
@@ -170,7 +170,7 @@ function update_mobile_responsiveness(result){
 	}
 	else {
 		$("#pf_responsiveness").parent().addClass("na");
-		$("#pf_responsiveness").text(result);
+		$("#pf_responsiveness").text("n/a");
 	}
 }
 
@@ -188,7 +188,7 @@ function update_mobile_viewportOptimization(result){
 	}
 	else {
 		$("#pf_viewportOptimization").parent().addClass("na");
-		$("#pf_viewportOptimization").text(result);
+		$("#pf_viewportOptimization").text("n/a");
 	}
 }
 
@@ -207,7 +207,7 @@ function update_performance_browserCaching(result){
 	}
 	else {
 		$("#pf_browserCaching").parent().addClass("na");
-		$("#pf_browserCaching").text(result);
+		$("#pf_browserCaching").text("n/a");
 	}
 }
 
@@ -226,7 +226,7 @@ function update_performance_compression(result){
 	}
 	else {
 		$("#pf_compression").parent().addClass("na");
-		$("#pf_compression").text(result);
+		$("#pf_compression").text("n/a");
 	}
 }
 
@@ -244,7 +244,7 @@ function update_performance_httpRequests(result){
 	}
 	else {
 		$("#pf_httpRequests").parent().addClass("na");
-		$("#pf_httpRequests").text(result);
+		$("#pf_httpRequests").text("n/a");
 	}
 }
 
@@ -261,7 +261,7 @@ function update_performance_pageLoad(result){
 	}
 	else {
 		$("#pf_pageLoad").parent().addClass("na");
-		$("#pf_pageLoad").text(result);
+		$("#pf_pageLoad").text("n/a");
 	}
 }
 
@@ -280,7 +280,7 @@ function update_performance_pageRedirects(result){
 	}
 	else {
 		$("#pf_pageRedirects").parent().addClass("na");
-		$("#pf_pageRedirects").text(result);
+		$("#pf_pageRedirects").text("n/a");
 	}
 }
 
@@ -298,7 +298,7 @@ function update_performance_pageSize(result){
 	}
 	else {
 		$("#pf_pageSize").parent().addClass("na");
-		$("#pf_pageSize").text(result);
+		$("#pf_pageSize").text("n/a");
 	}
 }
 
@@ -320,6 +320,6 @@ function update_performance_renderBlocking(result){
 	}
 	else {
 		$("#pf_renderBlocking").parent().addClass("na");
-		$("#pf_renderBlocking").text(result);
+		$("#pf_renderBlocking").text("n/a");
 	}
 }

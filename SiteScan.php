@@ -6,13 +6,6 @@ header("Content-Type: application/json");
 	include_once("firephp-core-0.4.0/lib/FirePHPCore/fb.php");
 
 	$email = $_GET["email"];
-
-
-	//$scanController = new ScanController("https://www.nhl.com");
-	//$scanController = new ScanController("http://www.apple.com/imac");
-	//$scanController = new ScanController("http://www.google.com");
-
-
 	$json = array();
 
 	if(!isset($_POST["url"])){
@@ -25,7 +18,7 @@ header("Content-Type: application/json");
 		$resultsAll = $scanController->scan();
 		$json["results"] = $resultsAll->parseJSON();
 	}
-	//FB::log($results);
+	
 	echo json_encode($json);
 
 ?>

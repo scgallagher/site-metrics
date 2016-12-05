@@ -24,7 +24,6 @@
 			$this->header = "";
 			$this->source = "";
 
-			FB::info("Inside constructor");
 			$this->getSource();
 			$this->getDOM();
 		}

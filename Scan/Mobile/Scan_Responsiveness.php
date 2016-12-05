@@ -6,6 +6,7 @@
 
 		private $dom;
 		private $resultsResponsiveness;
+		private $mediaQueries = 0;
 
 		public function __construct($dom){
 			$this->dom = $dom;
@@ -15,6 +16,12 @@
 		public function scan(){
 			//return $this->resultsResponsiveness;
 			$this->CheckTags();
+			if($this->mediaQueries > 0){
+				$this->resultsResponsiveness->hasMediaQueries = "Yes";
+			}
+			else {
+				$this->resultsResponsiveness->hasMediaQueries = "No";
+			}
 			$this->resultsResponsiveness->testPassed = $this->testPassed();
 			//return results
 			return $this->resultsResponsiveness;
@@ -27,19 +34,21 @@
 				if($linkTag->hasAttribute("rel")){
 					$linkContents = $linkTag->getAttribute("rel");
 					if($linkContents == "stylesheet"){
-						$url = $linkTag->getAttribute("src");
-						$source = getSource($url);
-						$this->resultsResponsiveness->hasMediaQueries = CheckMediaQueries($source);
+						$url = $linkTag->getAttribute("href");
+						$source = $this->getSource($url);
+						if($this->CheckMediaQueries($source)){
+								$this->mediaQueries++;
+						}
 					}
 				}
 			}
 
 					//checking for bootstrap
-					$metaTags = $this->dom->getElementsByTagName("script");
+					$scriptTags = $this->dom->getElementsByTagName("script");
 					//FB::log("got tags!");
-					foreach ($metaTags as $metaTag) {
-						if($metaTag->hasAttribute("src")){
-							$metaContents = $metaTag->getAttribute("src");
+					foreach ($scriptTags as $script) {
+						if($script->hasAttribute("src")){
+							$src = $script->getAttribute("src");
 							if(preg_match('/bootstrap/', $metaContents)){
 								//found, is enabled
 								$this->resultsResponsiveness->hasBootstrap = "Yes";
@@ -48,15 +57,15 @@
 						}
 					}
 					//if not found, it is not enabled
-					$this->resultsViewportOptimization->usesContentViewport = "No";
+					$this->resultsResponsiveness->hasBootstrap = "No";
 					return;
 		}
 
 		private function CheckMediaQueries($source){
-			if(preg_match('/^@media/', $source){
-				return "Yes";
+			if(preg_match('/^@media/', $source)){
+				return true;
 			}
-			return "No";
+			return false;
 		}
 
 		private function getSource($url){

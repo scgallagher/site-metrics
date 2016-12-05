@@ -9,7 +9,7 @@ header("Content-Type: application/json");
 	web();
 
 	function cli(){
-		$scanController = new ScanController("http://localhost/wordpress");
+		$scanController = new ScanController("http://localhost/wordpress/");
 		$resultsAll = $scanController->scan();
 	}
 

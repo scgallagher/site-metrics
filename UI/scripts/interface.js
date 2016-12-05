@@ -160,6 +160,8 @@ function update_seo_pageTitle(result){
 function update_mobile_responsiveness(result){
   var passed = result.testPassed;
   console.log("MOBILE - RESPONSIVENESS");
+  console.log("  Uses Bootstrap:\t" + result.hasBootstrap);
+  console.log("  Uses Media Queries:\t" + result.hasMediaQueries);
 	if(passed === true){
 		$("#pf_responsiveness").parent().addClass("pass");
 		$("#pf_responsiveness").text("pass");

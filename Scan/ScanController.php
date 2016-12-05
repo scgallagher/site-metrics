@@ -29,7 +29,6 @@
 		}
 
 		public function scan(){
-
 			$this->resultsAll->resultsSEO = $this->runScan_SearchEngineOptimizations();
 			$this->resultsAll->resultsMobile = $this->runScan_Mobile();
 			$this->resultsAll->resultsPerformance = $this->runScan_Performance();

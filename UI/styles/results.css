@@ -1,0 +1,79 @@
+/*div {
+  border: 1px solid black;
+}
+
+span {
+  border: 5px dotted black;
+}*/
+
+.resultsContainer {
+  /*padding-top: 10%;*/
+  /*height: 20em;*/
+  /*width: 20em;*/
+  /*padding: .5em;*/
+  /*margin: 1em;*/
+  padding: 0;
+}
+
+.resultsRow {
+
+}
+
+.passFail {
+  text-align: center;
+  padding: 18%;
+  font-family: "Droid Sans";
+  font-size: calc(3vw + 3vh);
+  font-variant: small-caps;
+}
+
+.divResults {
+  position: absolute;
+  top: 0; bottom: 0; left: 0; right: 0;
+  border: .5em solid black;
+  border-radius: 2em;
+  width: 100%;
+  height: 100%;
+}
+
+.container {
+  width: 100%;
+}
+
+.headingContainer {
+  padding: 0;
+}
+
+.wrapper {
+  width: 100%;
+  padding-top: 100%;
+}
+
+.headingWrapper {
+  width: 100%;
+  padding-top: 5%;
+}
+
+.heading {
+  padding: 0;
+  margin: 0;
+  position: absolute;
+  top: 0; bottom: 0; left: 0; right: 0;
+  text-align: center;
+  font-family: "Droid Sans";
+  font-size: calc(4vw + 4vh + 2vmin);
+  font-variant: small-caps;
+  line-height: .6;
+}
+
+.title {
+  text-align: center;
+  font-family: "Droid Sans";
+  font-size: calc(1vw + 1vh);
+  font-variant: small-caps;
+}
+
+/*#headingSEO {
+  font-size: calc(3vw + 3vh + 2vmin);
+  line-height: 1;
+}*/

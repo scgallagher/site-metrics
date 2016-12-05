@@ -1,4 +1,10 @@
 $(function() {
-	$("#spnMessage").text("Would you like to run a scan?");
   $("#txtScanTarget").val("localhost");
+	$("#resultsPage").hide();
+	$("#btnScan").click(scan);
 });
+
+function scan(){
+	$("#startPage").hide();
+	$("#resultsPage").show();
+}

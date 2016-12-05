@@ -12,6 +12,16 @@
 			$output = "";
 			return $output;
 		}
+		
+		public function testPassed()
+		{
+			if (strtolower($this->pageSizeResult) == "good")
+			{
+				return true;
+			}
+			
+			return false;
+		}
 
 	}
 

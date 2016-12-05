@@ -15,6 +15,20 @@
 			$output = "";
 			return $output;
 		}
+		
+		public function testPassed()
+		{
+			if (strtolower($this->cssImportResult) == "good"
+				&& strtolower($this->cssImportResult) == "good"
+				&& strtolower($this->cssImportResult) == "good"
+				&& strtolower($this->cssImportResult) == "good"
+				&& strtolower($this->cssImportResult) == "good")
+			{
+				return true;
+			}
+			
+			return false;
+		}
 
 	}
 

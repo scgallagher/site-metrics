@@ -30,10 +30,10 @@
 
 		public function parseJSON(){
 			$results = array();
-			//$results["resultsBrowserCaching"] = $this->resultsBrowserCaching->parseJSON();
+			$results["resultsBrowserCaching"] = $this->resultsBrowserCaching->parseJSON();
 			$results["resultsCompression"] = $this->resultsCompression->parseJSON();
 			$results["resultsHTTPRequests"] = $this->resultsHTTPRequests->parseJSON();
-			//$results["resultsPageLoad"] = $this->resultsPageLoad->parseJSON();
+			$results["resultsPageLoad"] = $this->resultsPageLoad->parseJSON();
 			$results["resultsPageRedirects"] = $this->resultsPageRedirects->parseJSON();
 			$results["resultsPageSize"] = $this->resultsPageSize->parseJSON();
 			$results["resultsRenderBlocking"] = $this->resultsRenderBlocking->parseJSON();

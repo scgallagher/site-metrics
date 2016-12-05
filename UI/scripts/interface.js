@@ -46,10 +46,10 @@ function scanComplete(obj){
   update_mobile_responsiveness(obj.results.resultsMobile.resultsResponsiveness);
   update_mobile_viewportOptimization(obj.results.resultsMobile.resultsViewportOptimization);
 
-  //update_performance_browserCaching(obj.results.resultsPerformance.resultsBrowserCaching);
+  update_performance_browserCaching(obj.results.resultsPerformance.resultsBrowserCaching);
   update_performance_compression(obj.results.resultsPerformance.resultsCompression);
   update_performance_httpRequests(obj.results.resultsPerformance.resultsHTTPRequests);
-  //update_performance_pageLoad(obj.results.resultsPerformance.resultsPageLoad);
+  update_performance_pageLoad(obj.results.resultsPerformance.resultsPageLoad);
   update_performance_pageRedirects(obj.results.resultsPerformance.resultsPageRedirects);
   update_performance_pageSize(obj.results.resultsPerformance.resultsPageSize);
   update_performance_renderBlocking(obj.results.resultsPerformance.resultsRenderBlocking);
@@ -197,6 +197,9 @@ function update_mobile_viewportOptimization(result){
 function update_performance_browserCaching(result){
   var passed = result.testPassed;
   console.log("PERFORMANCE - BROWSER CACHING");
+  console.log("  Size:\t\t" + result.cookiesSizeInBytes + "b");
+  console.log("  Cookies\t" + result.cookiesCount);
+  console.log("  Rating:\t" + result.browserCachingResult);
 	if(passed === true){
 		$("#pf_browserCaching").parent().addClass("pass");
 		$("#pf_browserCaching").text("pass");
@@ -251,6 +254,8 @@ function update_performance_httpRequests(result){
 function update_performance_pageLoad(result){
   var passed = result.testPassed;
   console.log("PERFORMANCE - PAGE LOAD");
+  console.log("  Load Time:\t" + result.loadTimeInSeconds + "s");
+  console.log("  Rating\t" + result.pageLoadResult);
 	if(passed === true){
 		$("#pf_pageLoad").parent().addClass("pass");
 		$("#pf_pageLoad").text("pass");

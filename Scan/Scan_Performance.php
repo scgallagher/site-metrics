@@ -36,7 +36,7 @@
 		}
 
 		public function runScan_BrowserCaching(){
-			$scanBrowserCaching = new Scan_BrowserCaching($this->dom);
+			$scanBrowserCaching = new Scan_BrowserCaching($this->dom, $this->url);
 			return $scanBrowserCaching->scan();
 		}
 
@@ -51,7 +51,7 @@
 		}
 
 		public function runScan_PageLoad(){
-			$scanPageLoad = new Scan_PageLoad($this->dom);
+			$scanPageLoad = new Scan_PageLoad($this->dom, $this->url);
 			return $scanPageLoad->scan();
 		}
 

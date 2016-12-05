@@ -11,6 +11,15 @@
 		public function parseJSON(){
 			$results = array();
 			$results["testPassed"] = $this->testPassed;
+			if($this->hasH1 == true){
+				$results["hasH1"] = "Yes";
+			}
+			else {
+				$results["hasH1"] = "No";
+			}
+			$results["h1Count"] = $this->h1Count;
+			$results["h2Count"] = $this->h2Count;
+			$results["h3Count"] = $this->h3Count;
 			return $results;
 		}
 

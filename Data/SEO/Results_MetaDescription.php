@@ -5,9 +5,20 @@
 		public $charCount;
 		public $testPassed;
 
+		public function __construct(){
+			$this->charCount = 0;
+		}
+
 		public function parseJSON(){
 			$results = array();
 			$results["testPassed"] = $this->testPassed;
+			if($this->hasMetaDescription == true){
+				$results["hasMetaDescription"] = "Yes";
+			}
+			else {
+				$results["hasMetaDescription"] = "No";
+			}
+			$results["charCount"] = $this->charCount;
 			return $results;
 		}
 

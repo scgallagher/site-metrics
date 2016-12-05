@@ -7,9 +7,20 @@
 		public $isCompanyNameFirst;
 		public $testPassed;
 
+		public function __construct(){
+			$this->charCount = 0;
+		}
+
 		public function parseJSON(){
 			$results = array();
 			$results["testPassed"] = $this->testPassed;
+			if($this->hasTitle == true){
+				$results["hasTitle"] = "Yes";
+			}
+			else {
+				$results["hasTitle"] = "No";
+			}
+			$results["charCount"] = $this->charCount;
 			return $results;
 		}
 

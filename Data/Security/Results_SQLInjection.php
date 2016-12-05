@@ -16,6 +16,8 @@
 		public function parseJSON(){
 			$results = array();
 			$results["testPassed"] = $this->testPassed;
+			$results["preparedStatements"] = $this->prepared_statements;
+			$results["nonPreparedStatements"] = $this->non_prepared_statements;
 			return $results;
 			//return json_encode($results);
 		}

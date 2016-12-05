@@ -13,6 +13,14 @@
 		public function parseJSON(){
 			$results = array();
 			$results["testPassed"] = $this->testPassed;
+			if($this->hasCert)
+				$results["hasCert"] = "Yes";
+			else
+				$results["hasCert"] = "No";
+			if($this->certExpired)
+				$results["certExpired"] = "Yes";
+			else
+				$results["certExpired"] = "No";
 			return $results;
 		}
 

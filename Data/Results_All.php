@@ -14,15 +14,20 @@
 		public function parseJSON(){
 			$results = array();
 			$results["resultsSecurity"] = $this->resultsSecurity->parseJSON();
+			$results["resultsSEO"] = $this->resultsSEO->parseJSON();
+			$results["resultsMobile"] = $this->resultsMobile->parseJSON();
+			//echo $this->resultsMobile->resultsResponsiveness->parseJSON() ."\n\n";
+			//echo $this->resultsMobile->parseJSON() ."\n\n";
+			//echo $this->resultsMobile->resultsViewportOptimization->usesContentViewport;
 			return $results;
 			//return json_encode($results);
 		}
 
 		public function __construct(){
-			$resultsSEO = new Results_SearchEngineOptimizations();
-			$resultsPerformance = new Results_Performance();
-			$resultsMobile = new Results_Mobile();
-			$resultsSecurity = new Results_Security();
+			$this->resultsSEO = new Results_SearchEngineOptimizations();
+			$this->resultsPerformance = new Results_Performance();
+			$this->resultsMobile = new Results_Mobile();
+			$this->resultsSecurity = new Results_Security();
 		}
 	}
 

@@ -18,6 +18,7 @@
 		public function scan(){
 			//FB::log("entered scan!");
 			$this->CheckforContentViewport();
+			$this->resultsViewportOptimization->testPassed = $this->testPassed();
 			//return results
 			return $this->resultsViewportOptimization;
 		}
@@ -38,6 +39,16 @@
 			//if not found, it is not enabled
 			$this->resultsViewportOptimization->usesContentViewport = "Viewport optimization is not enabled.";
 			return;
+		}
+
+		private function testPassed(){
+			$result = $this->resultsViewportOptimization->usesContentViewport;
+			if($result == "Viewport optimization enabled."){
+				return true;
+			}
+			else {
+				return false;
+			}
 		}
 
 	}

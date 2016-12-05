@@ -31,11 +31,10 @@
 
 		public function scan(){
 
-			$this->resultsAll->resultsSearchEngineOptimizations = $this->runScan_SearchEngineOptimizations();
-			$this->resultsAll->resultsMobile = $this->runscan_Mobile();
+			$this->resultsAll->resultsSEO = $this->runScan_SearchEngineOptimizations();
+			$this->resultsAll->resultsMobile = $this->runScan_Mobile();
 			$this->resultsAll->resultsPerformance = $this->runScan_Performance();
 			$this->resultsAll->resultsSecurity = $this->runScan_Security();
-
 			return $this->resultsAll;
 		}
 

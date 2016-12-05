@@ -8,14 +8,22 @@
 
 		public $resultsPageTitle;
 		public $resultsMetaDescription;
-		public $resulsHeading;
+		public $resultsHeading;
+
+		public function parseJSON(){
+			$results = array();
+			$results["resultsPageTitle"] = $this->resultsPageTitle->parseJSON();
+			$results["resultsMetaDescription"] = $this->resultsMetaDescription->parseJSON();
+			$results["resultsHeading"] = $this->resultsHeading->parseJSON();
+			return $results;
+		}
 
 		public function __construct(){
 			$this->resultsPageTitle = new Results_PageTitle();
 			$this->resultsMetaDescription = new Results_MetaDescription();
-			$this->Results_Heading = new Results_Heading();
+			$this->resultsHeading = new Results_Heading();
 		}
 
 	}
-	
+
 ?>

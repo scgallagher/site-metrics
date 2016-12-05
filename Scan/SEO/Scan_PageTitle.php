@@ -17,6 +17,7 @@ class Scan_PageTitle {
 		if($this->resultsPageTitle->hasTitle = $this->getTitle()){
 			$this->resultsPageTitle->charCount = $this->getCharCount();
 		}
+		$this->resultsPageTitle->testPassed = $this->testPassed();
 		return $this->resultsPageTitle;
 	}
 

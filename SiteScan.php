@@ -7,16 +7,25 @@ header("Content-Type: application/json");
 
 	$email = $_GET["email"];
 
-	$scanController = new ScanController("http://localhost/wordpress/");
+
 	//$scanController = new ScanController("https://www.nhl.com");
 	//$scanController = new ScanController("http://www.apple.com/imac");
 	//$scanController = new ScanController("http://www.google.com");
-	$resultsAll = $scanController->scan();
+
 
 	$json = array();
 
-	$json["results"] = $resultsAll->parseJSON();
-	FB::log($results);
+	if(!isset($_POST["url"])){
+	  $json["error"] = "URL not set!";
+	}
+	if(!isset($json["error"])){
+		$url = $_POST["url"];
+		FB::info("Server: Running scan on URL $url");
+		$scanController = new ScanController($url);
+		$resultsAll = $scanController->scan();
+		$json["results"] = $resultsAll->parseJSON();
+	}
+	//FB::log($results);
 	echo json_encode($json);
 
 ?>

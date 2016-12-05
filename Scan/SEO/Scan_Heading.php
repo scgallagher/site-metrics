@@ -16,6 +16,7 @@
 			$this->resultsHeading->h1Count = $this->countH1();
 			$this->resultsHeading->h2Count = $this->countH2();
 			$this->resultsHeading->h3Count = $this->countH3();
+			$this->resultsHeading->testPassed = $this->testPassed();
 
 			return $this->resultsHeading;
 		}

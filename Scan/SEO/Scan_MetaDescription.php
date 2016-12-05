@@ -19,6 +19,7 @@
 			if ($this->resultsMetaDescription->hasMetaDescription) {
 				$this->resultsMetaDescription->charCount = $this->getCharCount();
 			}
+			$this->resultsMetaDescription->testPassed = $this->testPassed();
 			//echo $this->resultsMetaDescription;
 			return $this->resultsMetaDescription;
 		}
@@ -43,7 +44,7 @@
 		private function testPassed(){
 			$count = $this->resultsMetaDescription->charCount;
 			if($this->resultsMetaDescription->hasMetaDescription &&
-				count >= 150 && count <= 160){
+				$count >= 150 && $count <= 160){
 				return true;
 			}
 			return false;

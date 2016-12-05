@@ -4,7 +4,14 @@
 
 		public $hasTitle;
 		public $charCount;
-		public $isCompanyNameFirst;	
+		public $isCompanyNameFirst;
+		public $testPassed;
+
+		public function parseJSON(){
+			$results = array();
+			$results["testPassed"] = $this->testPassed;
+			return $results;
+		}
 
 		public function __toString(){
 

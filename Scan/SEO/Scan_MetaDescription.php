@@ -19,7 +19,7 @@
 			if ($this->resultsMetaDescription->hasMetaDescription) {
 				$this->resultsMetaDescription->charCount = $this->getCharCount();
 			}
-			echo $this->resultsMetaDescription;
+			//echo $this->resultsMetaDescription;
 			return $this->resultsMetaDescription;
 		}
 

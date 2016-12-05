@@ -14,7 +14,7 @@
 
 		public function scan(){
 			$this->resultsHTTPRequests->requestCount = $this->countRequests();
-			echo $this->resultsHTTPRequests;
+			//echo $this->resultsHTTPRequests;
 			return $this->resultsHTTPRequests;
 		}
 
@@ -46,7 +46,7 @@
 					$count++;
 				}
 			}
-			echo "Stylesheet Count: $count\n";
+			//echo "Stylesheet Count: $count\n";
 			return $count;
 		}
 
@@ -58,7 +58,7 @@
 					$count++;
 				}
 			}
-			echo "Script Count: $count\n";
+			//echo "Script Count: $count\n";
 			return $count;
 		}
 
@@ -70,7 +70,7 @@
 					$count++;
 				}
 			}
-			echo "Image Count: $count\n";
+			//echo "Image Count: $count\n";
 			return $count;
 		}
 
@@ -82,7 +82,7 @@
 					$count++;
 				}
 			}
-			echo "$tag count: $count\n";
+			//echo "$tag count: $count\n";
 			return $count;
 		}
 
@@ -90,7 +90,7 @@
 			$count = 0;
 			$list = $this->dom->getElementsByTagName($tag);
 			$count = $list->length;
-			echo "$tag count: $count\n";
+			//echo "$tag count: $count\n";
 			return $count;
 		}
 

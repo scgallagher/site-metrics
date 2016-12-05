@@ -10,6 +10,13 @@
 
 		public $testPassed;
 
+		public function parseJSON(){
+			$results = array();
+			$results["testPassed"] = $this->testPassed;
+			return $results;
+			//return json_encode($results);
+		}
+
 		public function __toString(){
 			$output = "";
 

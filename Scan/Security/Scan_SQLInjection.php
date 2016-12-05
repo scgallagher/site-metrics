@@ -34,7 +34,7 @@
 				$this->resultsSQLInjection->non_prepared_statements = $this->non_prepared_statements;
 				$this->resultsSQLInjection->testPassed = $this->testPassed();
 			}
-			echo $this->resultsSQLInjection;
+			//echo $this->resultsSQLInjection;
 			return $this->resultsSQLInjection;
 		}
 
@@ -81,7 +81,7 @@
 
 			if(!($fh = @fopen($target, "r"))){
 				// file failed to open - perhaps log this?
-				echo "ERROR: failed to open file $target\n";
+				//echo "ERROR: failed to open file $target\n";
 				return;
 			}
 			while(!feof($fh)){

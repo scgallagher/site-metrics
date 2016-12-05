@@ -13,6 +13,13 @@
 			$this->prepared_statements = 0;
 		}
 
+		public function parseJSON(){
+			$results = array();
+			$results["testPassed"] = $this->testPassed;
+			return $results;
+			//return json_encode($results);
+		}
+
 		public function isUsingSQL(){
 			if($non_prepared_statements > 0 || $prepared_statements > 0){
 				$this->usingSQL = true;

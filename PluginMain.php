@@ -19,7 +19,7 @@
 
 	function wp_footer_callback(){
 	 	$email = get_bloginfo('admin_email');
-		echo "<script>window.open(\"wp-content/plugins/site-metrics/scan-interface.html?email=" . $email . "\");</script>";
+		echo "<script>window.open(\"wp-content/plugins/site-metrics/UI/interface.html?email=" . $email . "\");</script>";
 	}
 
 	function load_js(){

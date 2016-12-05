@@ -43,7 +43,7 @@
 				$this->resultsSSL->isVerified = $this->certificate->isVerified;
 			}
 			$this->resultsSSL->testPassed = $this->testPassed();
-			echo $this->resultsSSL;
+			//echo $this->resultsSSL;
 			return $this->resultsSSL;
 		}
 

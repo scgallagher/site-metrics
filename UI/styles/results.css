@@ -25,6 +25,19 @@ span {
   font-family: "Droid Sans";
   font-size: calc(3vw + 3vh);
   font-variant: small-caps;
+  color: black;
+}
+
+.pass {
+  background-color: green;
+}
+
+.fail {
+  background-color: red;
+}
+
+.na {
+  font-size: calc(2vw + 2vh);
 }
 
 .divResults {
@@ -67,6 +80,10 @@ span {
 }
 
 .title {
+  border-top-left-radius: .7em;
+  border-top-right-radius: .7em;
+  background-color: black;
+  color: white;
   text-align: center;
   font-family: "Droid Sans";
   font-size: calc(1vw + 1vh);

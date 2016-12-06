@@ -59,101 +59,107 @@ function scanComplete(obj){
 }
 
 function update_security_ssl(result){
-  var passed = result.testPassed;
+  var rating = result.rating;
   console.log("SECURITY - SSL");
   console.log("  Has Cert:\t\t" + result.hasCert);
   console.log("  Cert Expired:\t\t" + result.certExpired);
-	if(passed === true){
-		$("#pf_ssl").parent().addClass("pass");
-		$("#pf_ssl").text("pass");
+  console.log("  Rating:\t\t" + result.rating);
+	if(rating === "good"){
+		$("#pf_ssl").parent().addClass("good");
 	}
-	else if(passed === false){
-		$("#pf_ssl").parent().addClass("fail");
-		$("#pf_ssl").text("fail");
+	else if(rating === "bad"){
+		$("#pf_ssl").parent().addClass("bad");
 	}
 	else {
 		$("#pf_ssl").parent().addClass("na");
-		$("#pf_ssl").text("n/a");
 	}
+  $("#data_ssl").text("Has Cert: " + result.hasCert + "\tExpired: " + result.certExpired);
 }
 
 function update_security_sqlInjection(result){
-  var passed = result.testPassed;
+  var rating = result.rating;
   console.log("SECURITY - SQL INJECTION");
   console.log("  Prepared Statements:\t\t" + result.preparedStatements);
   console.log("  Non-Prepared Statements:\t" + result.nonPreparedStatements);
-	if(passed === true){
-		$("#pf_sqlInjection").parent().addClass("pass");
-		$("#pf_sqlInjection").text("pass");
+  console.log("  Rating:\t\t\t" + result.rating);
+	if(rating === "good"){
+		$("#pf_sqlInjection").parent().addClass("good");
 	}
-	else if(passed === false){
-		$("#pf_sqlInjection").parent().addClass("fail");
-		$("#pf_sqlInjection").text("fail");
+	else if(rating === "bad"){
+		$("#pf_sqlInjection").parent().addClass("bad");
 	}
 	else {
 		$("#pf_sqlInjection").parent().addClass("na");
-		$("#pf_sqlInjection").text("n/a");
 	}
+  $("#data_sqlInjection").text("Prepared: " + result.preparedStatements +
+    "\nNon-Prepared: " + result.nonPreparedStatements);
 }
 
 // Update SEO sections
 function update_seo_heading(result){
-  var passed = result.testPassed;
+  var rating = result.rating;
   console.log("SEO - HEADING");
   console.log("  Has H1:\t\t" + result.hasH1);
   console.log("  H1 Count:\t" +result.h1Count);
   console.log("  H2 Count:\t" +result.h2Count);
   console.log("  H3 Count:\t" +result.h3Count);
-	if(passed === true){
-		$("#pf_heading").parent().addClass("pass");
-		$("#pf_heading").text("pass");
+  console.log("  Rating:\t\t" + rating);
+	if(rating === "good"){
+		$("#pf_heading").parent().addClass("good");
 	}
-	else if(passed === false){
-		$("#pf_heading").parent().addClass("fail");
-		$("#pf_heading").text("fail");
+	else if(rating === "okay"){
+		$("#pf_heading").parent().addClass("okay");
 	}
+  else if(rating === "bad"){
+    $("#pf_heading").parent().addClass("bad");
+  }
 	else {
 		$("#pf_heading").parent().addClass("na");
-		$("#pf_heading").text("n/a");
 	}
+  $("#data_heading").text("H1 Tags: " + result.h1Count +
+    "\nH2 Tags: " + result.h2Count + "\nH3 Tags: " + result.h2Count);
 }
 
 function update_seo_metaDescription(result){
-  var passed = result.testPassed;
+  var rating = result.rating;
   console.log("SEO - META DESCRIPTION");
   console.log("  Has Meta:\t" + result.hasMetaDescription);
   console.log("  Char Count:\t" + result.charCount);
-	if(passed === true){
-		$("#pf_metaDescription").parent().addClass("pass");
-		$("#pf_metaDescription").text("pass");
+  console.log("  Rating:\t" + rating);
+	if(rating === "good"){
+		$("#pf_metaDescription").parent().addClass("good");
 	}
-	else if(passed === false){
-		$("#pf_metaDescription").parent().addClass("fail");
-		$("#pf_metaDescription").text("fail");
+	else if(rating === "okay"){
+		$("#pf_metaDescription").parent().addClass("okay");
+	}
+  else if(rating === "bad"){
+		$("#pf_metaDescription").parent().addClass("bad");
 	}
 	else {
 		$("#pf_metaDescription").parent().addClass("na");
-		$("#pf_metaDescription").text("n/a");
 	}
+  $("#data_metaDescription").text("Characters: " + result.charCount);
 }
 
 function update_seo_pageTitle(result){
-  var passed = result.testPassed;
+  var rating = result.rating;
   console.log("SEO - PAGE TITLE");
   console.log("  Has Title:\t" + result.hasTitle);
   console.log("  Char Count:\t" + result.charCount);
-	if(passed === true){
-		$("#pf_pageTitle").parent().addClass("pass");
-		$("#pf_pageTitle").text("pass");
+  console.log("  Rating:\t" + rating);
+	if(rating === "good"){
+		$("#pf_pageTitle").parent().addClass("good");
 	}
-	else if(passed === false){
-		$("#pf_pageTitle").parent().addClass("fail");
-		$("#pf_pageTitle").text("fail");
+	else if(rating === "okay"){
+		$("#pf_pageTitle").parent().addClass("okay");
 	}
+  else if(rating === "bad"){
+    $("#pf_pageTitle").parent().addClass("bad");
+  }
 	else {
 		$("#pf_pageTitle").parent().addClass("na");
-		$("#pf_pageTitle").text("n/a");
 	}
+  $("#data_pageTitle").text("Characters: " + result.charCount);
 }
 
 // Update Mobile sections
@@ -236,21 +242,23 @@ function update_performance_compression(result){
 }
 
 function update_performance_httpRequests(result){
-  var passed = result.testPassed;
+  var rating = result.rating;
   console.log("PERFORMANCE - HTTP REQUESTS");
   console.log("  Requests:\t" + result.requestCount);
-	if(passed === true){
-		$("#pf_httpRequests").parent().addClass("pass");
-		$("#pf_httpRequests").text("pass");
+  console.log("  Rating:\t" + rating);
+	if(rating === "good"){
+		$("#pf_httpRequests").parent().addClass("good");
 	}
-	else if(passed === false){
-		$("#pf_httpRequests").parent().addClass("fail");
-		$("#pf_httpRequests").text("fail");
+	else if(rating === "okay"){
+		$("#pf_httpRequests").parent().addClass("okay");
 	}
+  else if(rating === "bad"){
+    $("#pf_httpRequests").parent().addClass("bad");
+  }
 	else {
 		$("#pf_httpRequests").parent().addClass("na");
-		$("#pf_httpRequests").text("n/a");
 	}
+  $("#data_httpRequests").text("Requests: " + result.requestCount);
 }
 
 function update_performance_pageLoad(result){

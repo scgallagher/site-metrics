@@ -54,6 +54,11 @@ span {
   background-color: blue;
 }
 
+.data {
+  font-size: .35em;
+  white-space: pre-wrap;
+}
+
 /*.na {
   font-size: calc(2vw + 2vh);
   background-color: blue;

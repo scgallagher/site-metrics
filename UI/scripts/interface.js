@@ -226,6 +226,7 @@ function update_performance_compression(result){
   var passed = result.testPassed;
   // log metrics to console here
   console.log("PERFORMANCE - COMPRESSION");
+  console.log("  Percentage:\t" + result.compressionPercentage);
   console.log("  Rating:\t" + result.compressionResult);
 	if(passed === true){
 		$("#pf_compression").parent().addClass("pass");

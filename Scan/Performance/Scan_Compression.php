@@ -24,8 +24,11 @@
 			//Check for simple compression
 			$originalSizeInBytes = strlen($originalSiteContents);
 			$compressedSizeInBytes = strlen(preg_replace('/\s+/', '', $originalSiteContents));
-			if ($originalSizeInBytes != 0)
-				$this->resultsCompression->compressionPercentage = (($originalSizeInBytes - $compressedSizeInBytes) / $originalSizeInBytes) * 100;
+			if ($originalSizeInBytes != 0){
+				$percentage = (($originalSizeInBytes - $compressedSizeInBytes) / $originalSizeInBytes) * 100;
+				$this->resultsCompression->compressionPercentage = round($percentage);
+			}
+
 			else
 				$this->resultsCompression->compressionPercentage = -1;
 

@@ -17,6 +17,7 @@
 		public function parseJSON(){
 			$results = array();
 			$results["testPassed"] = $this->testPassed;
+			$results["compressionPercentage"] = $this->compressionPercentage;
 			$results["compressionResult"] = $this->compressionResult;
 			return $results;
 		}

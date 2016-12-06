@@ -37,6 +37,7 @@
 			$this->CheckForOnLoad();
 
 			$this->resultsRenderBlocking->testPassed = $this->testPassed();
+			$this->resultsRenderBlocking->rating = $this->getRating();
 			//Return results
 			return $this->resultsRenderBlocking;
 		}
@@ -60,7 +61,7 @@
 					$numMediaAttributes = $numMediaAttributes + 1;
 
 				if ($numMediaAttributes > 0 && $numLinkTags > $numMediaAttributes) { //Early quit
-					$this->resultsRenderBlocking->linkTagsWithMediaAttributeResult = "Ok";
+					$this->resultsRenderBlocking->linkTagsWithMediaAttributeResult = "Okay";
 					return;
 				}
 			}
@@ -119,7 +120,7 @@
 
 			//Set result
 			if(preg_match('/[Oo][Nn][Ll][Oo][Aa][Dd]/', $this->originalSiteContents))
-				$this->resultsRenderBlocking->onLoadResult = "Ok";
+				$this->resultsRenderBlocking->onLoadResult = "Okay";
 			else
 				$this->resultsRenderBlocking->onLoadResult = "Bad";
 		}
@@ -136,6 +137,48 @@
 			}
 
 			return false;
+		}
+
+		public function getRating(){
+			$score = 0;
+
+			if(strtolower($this->resultsRenderBlocking->cssImportResult) == "good"){
+				$score += 1;
+			}
+
+			if(strtolower($this->resultsRenderBlocking->linkTagsWithMediaAttributeResult) == "good"){
+				$score += 1;
+			}
+			else if(strtolower($this->resultsRenderBlocking->linkTagsWithMediaAttributeResult) == "okay"){
+				$score += .5;
+			}
+
+			if(strtolower($this->resultsRenderBlocking->multipleCssResult) == "good"){
+				$score += 1;
+			}
+
+			if(strtolower($this->resultsRenderBlocking->scriptTagsInHeadResult) == "good"){
+				$score += 1;
+			}
+
+			if(strtolower($this->resultsRenderBlocking->onLoadResult) == "good"){
+				$score += 1;
+			}
+			else if(strtolower($this->resultsRenderBlocking->onLoadResult) == "okay"){
+				$score += .5;
+			}
+
+			$score = round(($score / 5) * 100);
+			$this->resultsRenderBlocking->score = $score;
+			if($score >= 90){
+				return "good";
+			}
+			else if($score >= 70){
+				return "okay";
+			}
+			else {
+				return "bad";
+			}
 		}
 
 	}

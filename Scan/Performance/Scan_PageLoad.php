@@ -17,17 +17,18 @@
 		public function scan(){
 			$scanTarget = $this->url;
 			$this->resultsPageLoad->loadTimeInSeconds = $this->getRequestTime($scanTarget);
-			
+
 			if ($this->resultsPageLoad->loadTimeInSeconds < 0)
 				$this->resultsPageLoad->pageLoadResult = "ERROR";
 			elseif ($this->resultsPageLoad->loadTimeInSeconds < 3)
 				$this->resultsPageLoad->pageLoadResult = "Good";
 			elseif ($this->resultsPageLoad->loadTimeInSeconds < 5)
-				$this->resultsPageLoad->pageLoadResult = "Ok";
+				$this->resultsPageLoad->pageLoadResult = "Okay";
 			else
 				$this->resultsPageLoad->pageLoadResult = "Bad";
-			
+
 			$this->resultsPageLoad->testPassed = $this->testPassed();
+			$this->resultsPageLoad->rating = $this->resultsPageLoad->pageLoadResult;
 			return $this->resultsPageLoad;
 		}
 
@@ -40,13 +41,13 @@
 			return false;
 		}
 
-		
-		
+
+
 		private function getRequestTime($url){
 			$starttime = microtime(true);
 			$file = @fsockopen($url, 80, $errNumber, $errText, 30);
 			$endtime = microtime(true);
-			
+
 			$time = 0;
 			if(!$file) {
 				$time = -1;

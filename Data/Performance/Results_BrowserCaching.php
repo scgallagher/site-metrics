@@ -6,6 +6,7 @@
 		public $browserCachingResult;
 		public $cookiesSizeInBytes;
 		public $cookiesCount;
+		public $rating;
 
 		public function __toString(){
 			$output = "";
@@ -18,6 +19,7 @@
 			$results["cookiesSizeInBytes"] = $this->cookiesSizeInBytes;
 			$results["cookiesCount"] = $this->cookiesCount;
 			$results["browserCachingResult"] = $this->browserCachingResult;
+			$results["rating"] = $this->rating;
 			return $results;
 		}
 

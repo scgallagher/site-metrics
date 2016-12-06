@@ -32,13 +32,14 @@
 			if ($redirectCount == 0)
 				$this->resultsPageRedirects->redirectsResult = "Good";
 			elseif ($redirectCount == 1)
-				$this->resultsPageRedirects->redirectsResult = "Ok";
+				$this->resultsPageRedirects->redirectsResult = "Okay";
 			elseif ($redirectCount > 1)
 				$this->resultsPageRedirects->redirectsResult = "Bad";
 			else
 				$this->resultsPageRedirects->redirectsResult = "ERROR";
 
 				$this->resultsPageRedirects->testPassed = $this->testPassed();
+				$this->resultsPageRedirects->rating = $this->resultsPageRedirects->redirectsResult;
 			//Return results
 			return $this->resultsPageRedirects;
 		}

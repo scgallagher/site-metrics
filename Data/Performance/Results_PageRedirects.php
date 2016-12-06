@@ -5,6 +5,7 @@
 		//General Metric(s)
 		public $redirectsResult;
 		public $testPassed;
+		public $rating;
 
 		//Specific Metric(s)
 		public $redirectCount;
@@ -18,6 +19,7 @@
 			$results = array();
 			$results["testPassed"] = $this->testPassed;
 			$results["redirectsResult"] = $this->redirectsResult;
+			$results["rating"] = $this->rating;
 			return $results;
 		}
 

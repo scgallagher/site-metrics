@@ -38,11 +38,12 @@
 			if($grade == 3)
 				$this->resultsBrowserCaching->browserCachingResult = "Good";
 			elseif($grade == 2)
-				$this->resultsBrowserCaching->browserCachingResult = "Ok";
+				$this->resultsBrowserCaching->browserCachingResult = "Okay";
 			else
 				$this->resultsBrowserCaching->browserCachingResult = "Bad";
 
 			$this->resultsBrowserCaching->testPassed = $this->testPassed();
+			$this->resultsBrowserCaching->rating = $this->resultsBrowserCaching->browserCachingResult;
 			return $this->resultsBrowserCaching;
 		}
 

@@ -64,10 +64,10 @@ function update_security_ssl(result){
   console.log("  Has Cert:\t\t" + result.hasCert);
   console.log("  Cert Expired:\t\t" + result.certExpired);
   console.log("  Rating:\t\t" + result.rating);
-	if(rating === "good"){
+	if(rating.toLowerCase() === "good"){
 		$("#pf_ssl").parent().addClass("good");
 	}
-	else if(rating === "bad"){
+	else if(rating.toLowerCase() === "bad"){
 		$("#pf_ssl").parent().addClass("bad");
 	}
 	else {
@@ -82,10 +82,10 @@ function update_security_sqlInjection(result){
   console.log("  Prepared Statements:\t\t" + result.preparedStatements);
   console.log("  Non-Prepared Statements:\t" + result.nonPreparedStatements);
   console.log("  Rating:\t\t\t" + result.rating);
-	if(rating === "good"){
+	if(rating.toLowerCase() === "good"){
 		$("#pf_sqlInjection").parent().addClass("good");
 	}
-	else if(rating === "bad"){
+	else if(rating.toLowerCase() === "bad"){
 		$("#pf_sqlInjection").parent().addClass("bad");
 	}
 	else {
@@ -104,13 +104,13 @@ function update_seo_heading(result){
   console.log("  H2 Count:\t" +result.h2Count);
   console.log("  H3 Count:\t" +result.h3Count);
   console.log("  Rating:\t\t" + rating);
-	if(rating === "good"){
+	if(rating.toLowerCase() === "good"){
 		$("#pf_heading").parent().addClass("good");
 	}
-	else if(rating === "okay"){
+	else if(rating.toLowerCase() === "okay"){
 		$("#pf_heading").parent().addClass("okay");
 	}
-  else if(rating === "bad"){
+  else if(rating.toLowerCase() === "bad"){
     $("#pf_heading").parent().addClass("bad");
   }
 	else {
@@ -126,13 +126,13 @@ function update_seo_metaDescription(result){
   console.log("  Has Meta:\t" + result.hasMetaDescription);
   console.log("  Char Count:\t" + result.charCount);
   console.log("  Rating:\t" + rating);
-	if(rating === "good"){
+	if(rating.toLowerCase() === "good"){
 		$("#pf_metaDescription").parent().addClass("good");
 	}
-	else if(rating === "okay"){
+	else if(rating.toLowerCase() === "okay"){
 		$("#pf_metaDescription").parent().addClass("okay");
 	}
-  else if(rating === "bad"){
+  else if(rating.toLowerCase() === "bad"){
 		$("#pf_metaDescription").parent().addClass("bad");
 	}
 	else {
@@ -147,13 +147,13 @@ function update_seo_pageTitle(result){
   console.log("  Has Title:\t" + result.hasTitle);
   console.log("  Char Count:\t" + result.charCount);
   console.log("  Rating:\t" + rating);
-	if(rating === "good"){
+	if(rating.toLowerCase() === "good"){
 		$("#pf_pageTitle").parent().addClass("good");
 	}
-	else if(rating === "okay"){
+	else if(rating.toLowerCase() === "okay"){
 		$("#pf_pageTitle").parent().addClass("okay");
 	}
-  else if(rating === "bad"){
+  else if(rating.toLowerCase() === "bad"){
     $("#pf_pageTitle").parent().addClass("bad");
   }
 	else {
@@ -247,13 +247,13 @@ function update_performance_httpRequests(result){
   console.log("PERFORMANCE - HTTP REQUESTS");
   console.log("  Requests:\t" + result.requestCount);
   console.log("  Rating:\t" + rating);
-	if(rating === "good"){
+	if(rating.toLowerCase() === "good"){
 		$("#pf_httpRequests").parent().addClass("good");
 	}
-	else if(rating === "okay"){
+	else if(rating.toLowerCase() === "okay"){
 		$("#pf_httpRequests").parent().addClass("okay");
 	}
-  else if(rating === "bad"){
+  else if(rating.toLowerCase() === "bad"){
     $("#pf_httpRequests").parent().addClass("bad");
   }
 	else {
@@ -326,6 +326,7 @@ function update_performance_renderBlocking(result){
   console.log("  Multi CSS:\t\t" + result.multipleCssResult);
   console.log("  Scripts in Head:\t" + result.scriptTagsInHeadResult);
   console.log("  On Load:\t\t" + result.onLoadResult);
+  console.log("  Score:\t\t" + result.score + "%");
 	if(passed === true){
 		$("#pf_renderBlocking").parent().addClass("pass");
 		$("#pf_renderBlocking").text("pass");

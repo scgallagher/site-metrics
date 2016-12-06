@@ -38,11 +38,12 @@
 			elseif ($this->resultsCompression->compressionPercentage < 10)
 				$this->resultsCompression->compressionResult = "Good";
 			elseif ($this->resultsCompression->compressionPercentage < 25)
-				$this->resultsCompression->compressionResult = "Ok";
+				$this->resultsCompression->compressionResult = "Okay";
 			else
 				$this->resultsCompression->compressionResult = "Bad";
 
 				$this->resultsCompression->testPassed = $this->testPassed();
+				$this->resultsCompression->rating = $this->resultsCompression->compressionResult;
 			//Return result
 			//echo "<br>Compression: " . $this->resultsCompression->compressionResult . " " . $this->resultsCompression->compressionPercentage . "<br>";
 			return $this->resultsCompression;

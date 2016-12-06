@@ -5,6 +5,7 @@
 		public $testPassed;
 		public $pageLoadResult;
 		public $loadTimeInSeconds;
+		public $rating;
 
 		public function __toString(){
 			$output = "";
@@ -16,6 +17,7 @@
 			$results["testPassed"] = $this->testPassed;
 			$results["loadTimeInSeconds"] = $this->loadTimeInSeconds;
 			$results["pageLoadResult"]= $this->pageLoadResult;
+			$results["rating"] = $this->rating;
 			return $results;
 		}
 

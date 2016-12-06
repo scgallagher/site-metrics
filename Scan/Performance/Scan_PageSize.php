@@ -30,11 +30,12 @@
 			elseif ($this->resultsPageSize->pageSizeInBytes < 200000)
 				$this->resultsPageSize->pageSizeResult = "Good";
 			elseif ($this->resultsPageSize->pageSizeInBytes < 300000)
-				$this->resultsPageSize->pageSizeResult = "Ok";
+				$this->resultsPageSize->pageSizeResult = "Okay";
 			else
 				$this->resultsPageSize->pageSizeResult = "Bad";
 
 				$this->resultsPageSize->testPassed = $this->testPassed();
+				$this->resultsPageSize->rating =	$this->resultsPageSize->pageSizeResult;
 			return $this->resultsPageSize;
 		}
 

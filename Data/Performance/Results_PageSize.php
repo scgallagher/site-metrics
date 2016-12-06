@@ -5,6 +5,7 @@
 		//General Metric(s)
 		public $pageSizeResult;
 		public $testPassed;
+		public $rating;
 
 		//Specific Metric(s)
 		public $pageSizeInBytes;
@@ -18,6 +19,7 @@
 			$results = array();
 			$results["testPassed"] = $this->testPassed;
 			$results["pageSizeResult"] = $this->pageSizeResult;
+			$results["rating"] = $this->rating;
 			return $results;
 		}
 

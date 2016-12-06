@@ -9,6 +9,7 @@
 		public $isVerified;
 
 		public $testPassed;
+		public $rating;
 
 		public function parseJSON(){
 			$results = array();
@@ -21,6 +22,7 @@
 				$results["certExpired"] = "Yes";
 			else
 				$results["certExpired"] = "No";
+			$results["rating"] = $this->rating;
 			return $results;
 		}
 

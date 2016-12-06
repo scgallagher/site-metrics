@@ -5,12 +5,13 @@ header("Content-Type: application/json");
 	require_once("Scan/ScanController.php");
 	include_once("firephp-core-0.4.0/lib/FirePHPCore/fb.php");
 
-	//cli();
-	web();
+	cli();
+	//web();
 
 	function cli(){
 		$scanController = new ScanController("http://localhost/wordpress/");
 		$resultsAll = $scanController->scan();
+		echo $resultsAll->parseJSON();
 	}
 
 	function web(){

@@ -4,6 +4,7 @@
 		public $hasMetaDescription;
 		public $charCount;
 		public $testPassed;
+		public $rating;
 
 		public function __construct(){
 			$this->charCount = 0;
@@ -19,6 +20,7 @@
 				$results["hasMetaDescription"] = "No";
 			}
 			$results["charCount"] = $this->charCount;
+			$results["rating"] = $this->rating;
 			return $results;
 		}
 

@@ -43,6 +43,7 @@
 				$this->resultsSSL->isVerified = $this->certificate->isVerified;
 			}
 			$this->resultsSSL->testPassed = $this->testPassed();
+			$this->resultsSSL->rating = $this->getRating();
 			//echo $this->resultsSSL;
 			return $this->resultsSSL;
 		}
@@ -114,6 +115,15 @@
 			}
 			else {
 				return true;
+			}
+		}
+
+		private function getRating(){
+			if($this->resultsSSL->hasCert && !$this->resultsSSL->certExpired){
+				return "good";
+			}
+			else {
+				return "bad";
 			}
 		}
 

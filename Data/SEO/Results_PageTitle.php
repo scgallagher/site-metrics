@@ -6,6 +6,7 @@
 		public $charCount;
 		public $isCompanyNameFirst;
 		public $testPassed;
+		public $rating;
 
 		public function __construct(){
 			$this->charCount = 0;
@@ -21,6 +22,7 @@
 				$results["hasTitle"] = "No";
 			}
 			$results["charCount"] = $this->charCount;
+			$results["rating"] = $this->rating;
 			return $results;
 		}
 

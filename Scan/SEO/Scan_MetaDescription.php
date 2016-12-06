@@ -20,7 +20,7 @@
 				$this->resultsMetaDescription->charCount = $this->getCharCount();
 			}
 			$this->resultsMetaDescription->testPassed = $this->testPassed();
-			//echo $this->resultsMetaDescription;
+			$this->resultsMetaDescription->rating = $this->getRating();
 			return $this->resultsMetaDescription;
 		}
 
@@ -48,6 +48,19 @@
 				return true;
 			}
 			return false;
+		}
+
+		private function getRating(){
+			$count = $this->resultsMetaDescription->charCount;
+			if($count >= 150 && $count <= 160){
+				return "good";
+			}
+			else if(($count >= 100 && $count < 150) || ($count > 160 && <= 210)){
+				return "okay";
+			}
+			else {
+				return "bad";
+			}
 		}
 
 	}

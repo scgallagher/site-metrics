@@ -5,6 +5,7 @@
 		public $non_prepared_statements;
 		public $prepared_statements;
 		public $isLocal;
+		public $rating;
 
 		public $testPassed;
 
@@ -18,6 +19,7 @@
 			$results["testPassed"] = $this->testPassed;
 			$results["preparedStatements"] = $this->prepared_statements;
 			$results["nonPreparedStatements"] = $this->non_prepared_statements;
+			$results["rating"] = $this->rating;
 			return $results;
 			//return json_encode($results);
 		}

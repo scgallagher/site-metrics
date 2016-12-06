@@ -18,6 +18,7 @@ class Scan_PageTitle {
 			$this->resultsPageTitle->charCount = $this->getCharCount();
 		}
 		$this->resultsPageTitle->testPassed = $this->testPassed();
+		$this->resultsPageTitle->rating = $this->getRating();
 		return $this->resultsPageTitle;
 	}
 
@@ -41,6 +42,19 @@ class Scan_PageTitle {
 		if($results->hasTitle && $results->charCount < 60)
 			return true;
 		return false;
+	}
+
+	private function getRating(){
+		$results = $this->resultsPageTitle;
+		if($results->charCount < 60){
+			return "good";
+		}
+		else if($results->charCount > 60 && <= 80){
+			return "okay";
+		}
+		else{
+			return "bad";
+		}
 	}
 
 }

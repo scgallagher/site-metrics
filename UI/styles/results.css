@@ -37,6 +37,18 @@ span {
   background-color: red;
 }
 
+.good {
+  background-color: green;
+}
+
+.okay {
+  background-color: yellow;
+}
+
+.bad {
+  background-color: red;
+}
+
 .na {
   /*font-size: calc(2vw + 2vh);*/
   background-color: blue;

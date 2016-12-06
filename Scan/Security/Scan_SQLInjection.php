@@ -34,7 +34,7 @@
 				$this->resultsSQLInjection->non_prepared_statements = $this->non_prepared_statements;
 			}
 			$this->resultsSQLInjection->testPassed = $this->testPassed();
-			//echo $this->resultsSQLInjection;
+			$this->resultsSQLInjection->rating = $this->getRating();
 			return $this->resultsSQLInjection;
 		}
 
@@ -119,6 +119,20 @@
 			}
 			else {
 				return true;
+			}
+		}
+
+		private function getRating(){
+			$prepared = $this->resultsSQLInjection->prepared_statements;
+			$nonPrepared = $this->resultsSQLInjection->non_prepared_statements;
+			if($prepared == 0 && $nonPrepared == 0){
+				return "Not Applicable";
+			}
+			else if($nonPrepared > 0){
+				return "bad";
+			}
+			else {
+				return "good";
 			}
 		}
 

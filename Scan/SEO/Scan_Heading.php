@@ -16,6 +16,8 @@
 			$this->resultsHeading->h1Count = $this->countH1();
 			$this->resultsHeading->h2Count = $this->countH2();
 			$this->resultsHeading->h3Count = $this->countH3();
+			
+			$this->resultsHeading->rating = $this->getRating();
 			$this->resultsHeading->testPassed = $this->testPassed();
 
 			return $this->resultsHeading;
@@ -50,6 +52,19 @@
 			}
 			else{
 				return true;
+			}
+		}
+
+		private function getRating(){
+			if($this->resultsHeading->hasH1 && $this->resultsHeading->h1Count == 1){
+				return "good";
+			}
+			else if(!$this->resultsHeading->hasH1 && $this->resultsHeading->hasH2
+				&& $this->resultsHeading->hasH3){
+					return "okay";
+			}
+			else {
+				return "bad";
 			}
 		}
 

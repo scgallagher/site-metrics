@@ -19,6 +19,7 @@
 			//FB::log("entered scan!");
 			$this->CheckforContentViewport();
 			$this->resultsViewportOptimization->testPassed = $this->testPassed();
+			$this->resultsViewportOptimization->rating = $this->getRating();
 			//return results
 			return $this->resultsViewportOptimization;
 		}
@@ -31,23 +32,32 @@
 					$metaContents = $metaTag->getAttribute("content");
 					if(preg_match('/width\s*=\s*device-width/', $metaContents) && preg_match('/initial-scale\s*=\s*(1\.0|1)/', $metaContents)){
 						//found, is enabled
-						$this->resultsViewportOptimization->usesContentViewport = "Viewport optimization enabled.";
+						$this->resultsViewportOptimization->usesContentViewport = "Yes";
 						return;
 						}
 				}
 			}
 			//if not found, it is not enabled
-			$this->resultsViewportOptimization->usesContentViewport = "Viewport optimization is not enabled.";
+			$this->resultsViewportOptimization->usesContentViewport = "No";
 			return;
 		}
 
 		private function testPassed(){
 			$result = $this->resultsViewportOptimization->usesContentViewport;
-			if($result == "Viewport optimization enabled."){
+			if($result == "Yes"){
 				return true;
 			}
 			else {
 				return false;
+			}
+		}
+
+		private function getRating(){
+			if($this->resultsViewportOptimization->usesContentViewport === "Yes"){
+				return "good";
+			}
+			else {
+				return "bad";
 			}
 		}
 

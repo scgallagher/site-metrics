@@ -164,40 +164,41 @@ function update_seo_pageTitle(result){
 
 // Update Mobile sections
 function update_mobile_responsiveness(result){
-  var passed = result.testPassed;
+  var rating = result.rating;
   console.log("MOBILE - RESPONSIVENESS");
   console.log("  Uses Bootstrap:\t" + result.hasBootstrap);
   console.log("  Uses Media Queries:\t" + result.hasMediaQueries);
-	if(passed === true){
-		$("#pf_responsiveness").parent().addClass("pass");
-		$("#pf_responsiveness").text("pass");
+	if(rating.toLowerCase() === "good"){
+		$("#pf_responsiveness").parent().addClass("good");
 	}
-	else if(passed === false){
-		$("#pf_responsiveness").parent().addClass("fail");
-		$("#pf_responsiveness").text("fail");
+	else if(rating.toLowerCase() === "okay"){
+		$("#pf_responsiveness").parent().addClass("okay");
 	}
+  else if(rating.toLowerCase() === "bad"){
+    $("#pf_responsiveness").parent().addClass("bad");
+  }
 	else {
 		$("#pf_responsiveness").parent().addClass("na");
-		$("#pf_responsiveness").text("n/a");
 	}
+  $("#data_responsiveness").text("Bootstrap: " + result.hasBootstrap +
+    "\nMedia Queries: " + result.hasMediaQueries);
 }
 
 function update_mobile_viewportOptimization(result){
-  var passed = result.testPassed;
+  var rating = result.rating;
   console.log("MOBILE - VIEWPORT OPTIMIZATION");
-  console.log("  " + result.usesContentViewport);
-	if(passed === true){
-		$("#pf_viewportOptimization").parent().addClass("pass");
-		$("#pf_viewportOptimization").text("pass");
+  console.log("  Using Content Viewport:\t" + result.usesContentViewport);
+	if(rating.toLowerCase() === "good"){
+		$("#pf_viewportOptimization").parent().addClass("good");
 	}
-	else if(passed === false){
-		$("#pf_viewportOptimization").parent().addClass("fail");
-		$("#pf_viewportOptimization").text("fail");
+	else if(rating.toLowerCase() === "bad"){
+		$("#pf_viewportOptimization").parent().addClass("bad");
 	}
 	else {
 		$("#pf_viewportOptimization").parent().addClass("na");
 		$("#pf_viewportOptimization").text("n/a");
 	}
+  $("#data_viewportOptimization").text("Uses Content Viewport: " + result.usesContentViewport);
 }
 
 // Update Performance sections

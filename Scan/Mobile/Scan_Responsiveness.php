@@ -23,6 +23,7 @@
 				$this->resultsResponsiveness->hasMediaQueries = "No";
 			}
 			$this->resultsResponsiveness->testPassed = $this->testPassed();
+			$this->resultsResponsiveness->rating = $this->getRating();
 			//return results
 			return $this->resultsResponsiveness;
 		}
@@ -92,6 +93,20 @@
 					return true;
 				}
 				return false;
+		}
+
+		function getRating(){
+			if($this->resultsResponsiveness->hasMediaQueries === "Yes" &&
+				$this->resultsResponsiveness->hasBootstrap === "Yes"){
+					return "good";
+			}
+			else if($this->resultsResponsiveness->hasMediaQueries === "Yes" ||
+				$this->resultsResponsiveness->hasBootstrap === "Yes"){
+					return "okay";
+			}
+			else {
+				return "bad";
+			}
 		}
 	}
 

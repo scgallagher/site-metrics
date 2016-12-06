@@ -4,11 +4,13 @@
 
 		public $usesContentViewport;
 		public $testPassed;
+		public $rating;
 
 		public function parseJSON(){
 			$results = array();
 			$results["testPassed"] = $this->testPassed;
 			$results["usesContentViewport"] = $this->usesContentViewport;
+			$results["rating"] = $this->rating;
 			return $results;
 		}
 

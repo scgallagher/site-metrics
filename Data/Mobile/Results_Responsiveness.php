@@ -5,6 +5,7 @@
 		public $hasBootstrap;
 		public $hasMediaQueries;
 		public $testPassed;
+		public $rating;
 
 		public function __construct(){
 			$this->testPassed = false;
@@ -15,6 +16,7 @@
 			$results["testPassed"] = $this->testPassed;
 			$results["hasBootstrap"] = $this->hasBootstrap;
 			$results["hasMediaQueries"] = $this->hasMediaQueries;
+			$results["rating"] = $this->rating;
 			return $results;
 		}
 

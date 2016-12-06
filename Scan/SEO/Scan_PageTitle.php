@@ -49,7 +49,7 @@ class Scan_PageTitle {
 		if($results->charCount < 60){
 			return "good";
 		}
-		else if($results->charCount > 60 && <= 80){
+		else if($results->charCount > 60 && $results->charCount <= 80){
 			return "okay";
 		}
 		else{

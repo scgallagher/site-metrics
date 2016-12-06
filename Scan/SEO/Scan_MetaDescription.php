@@ -55,7 +55,7 @@
 			if($count >= 150 && $count <= 160){
 				return "good";
 			}
-			else if(($count >= 100 && $count < 150) || ($count > 160 && <= 210)){
+			else if(($count >= 100 && $count < 150) || ($count > 160 && $count <= 210)){
 				return "okay";
 			}
 			else {

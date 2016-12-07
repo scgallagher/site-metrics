@@ -1,8 +1,18 @@
 <?php
 header("Content-Type: application/json");
+
+	// Dev error settings
+	// NOTE: CLI ONLY - Comment this section out when serving
 	// ini_set('display_errors', 1);
 	// ini_set('display_startup_errors', 1);
-	// error_reporting(E_ALL);
+	// error_reporting(E_ALL | E_STRICT);
+
+	// Prod error settings
+	// The following two lines are necessary to suppress a strange warning
+	// being thrown by ScanController.php THE PAGE WILL NOT LOAD WITHOUT THIS SET
+	ini_set('display_errors', 'Off');
+ 	error_reporting(E_ALL & ~E_WARNING & ~E_NOTICE);
+
 	require_once("Scan/ScanController.php");
 	include_once("firephp-core-0.4.0/lib/FirePHPCore/fb.php");
 	require_once("DataManager.php");
@@ -34,8 +44,8 @@ header("Content-Type: application/json");
 			$scanController = new ScanController($url);
 			$resultsAll = $scanController->scan();
 			$json["results"] = $resultsAll->parseJSON();
-			// $dm = new DataManager($url, $email, $resultsAll);
-			// $dm->write();
+			$dm = new DataManager($url, $email, $resultsAll);
+			$dm->write();
 		}
 
 		echo json_encode($json);

@@ -30,12 +30,15 @@ function runScan(url){
 		data: {"url" : url},
 		success: function(obj){
 			scanComplete(obj);
-		}
+		},
+    error: function( jqXHR, textStatus, errorThrown){
+      console.log(textStatus);
+    }
 	});
 }
 
 function scanComplete(obj){
-
+  console.log("here");
 	update_security_ssl(obj.results.resultsSecurity.resultsSSL);
 	update_security_sqlInjection(obj.results.resultsSecurity.resultsSQLInjection);
 

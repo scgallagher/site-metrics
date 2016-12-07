@@ -50,7 +50,7 @@
 					foreach ($scriptTags as $script) {
 						if($script->hasAttribute("src")){
 							$src = $script->getAttribute("src");
-							if(preg_match('/bootstrap/', $metaContents)){
+							if(preg_match('/bootstrap/', $src)){
 								//found, is enabled
 								$this->resultsResponsiveness->hasBootstrap = "Yes";
 								return;

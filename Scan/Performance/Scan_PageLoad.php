@@ -44,11 +44,11 @@
 		private function stripProtocol($url){
 			if(preg_match('/^(http:\/\/|https:\/\/)localhost/', $url)){
 				$url = "127.0.0.1";
-				FB::log($url);
+				//FB::log($url);
 			}
 			else if(preg_match('/^(http:\/\/|https:\/\/)/', $url, $matches)){
 				$url = str_replace($matches[0], "", $url);
-				FB::log($url);
+				//FB::log($url);
 			}
 			return $url;
 		}
@@ -63,7 +63,7 @@
 
 			$time = 0;
 			if(!$file) {
-				FB::log("file did not open - $errText");
+				//FB::log("file did not open - $errText");
 				$time = -1;
 			} else {
 				fclose($file);

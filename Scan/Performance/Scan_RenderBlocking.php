@@ -43,7 +43,7 @@
 		}
 
 		private function CheckCssImport() {
-			if(preg_match('/@import +url\("[A-Za-z0-9]+.css"', $this->originalSiteContents))
+			if(preg_match('/@import +url\("[A-Za-z0-9]+.css"/', $this->originalSiteContents))
 				$this->resultsRenderBlocking->cssImportResult = "Bad";
 			else
 				$this->resultsRenderBlocking->cssImportResult = "Good";

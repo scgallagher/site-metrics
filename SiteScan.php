@@ -1,9 +1,13 @@
 <?php
 header("Content-Type: application/json");
-	ini_set('display_errors', 'Off');
-	error_reporting(E_ALL & ~E_WARNING & ~E_NOTICE);
+	ini_set('display_errors', 1);
+	ini_set('display_startup_errors', 1);
+	error_reporting(E_ALL);
+	// ini_set('display_errors', 'Off');
+	// error_reporting(E_ALL & ~E_WARNING & ~E_NOTICE);
 	require_once("Scan/ScanController.php");
 	include_once("firephp-core-0.4.0/lib/FirePHPCore/fb.php");
+	require_once("DataManager.php");
 
 	//cli();
 	web();
@@ -27,6 +31,7 @@ header("Content-Type: application/json");
 			$scanController = new ScanController($url);
 			$resultsAll = $scanController->scan();
 			$json["results"] = $resultsAll->parseJSON();
+			$dm = new DataManager($url, $email);
 		}
 
 		echo json_encode($json);

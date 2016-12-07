@@ -11,6 +11,11 @@
 		public $testPassed;
 		public $rating;
 
+		public function __construct(){
+			$this->hasCert = false;
+			$this->certExpired = false;
+		}
+
 		public function parseJSON(){
 			$results = array();
 			$results["testPassed"] = $this->testPassed;

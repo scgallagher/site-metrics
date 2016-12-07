@@ -21,11 +21,23 @@ function getURL(){
   return url;
 }
 
+function getQueryVariable(variable) {
+  var query = window.location.search.substring(1);
+  var vars = query.split("&");
+  for (var i=0;i<vars.length;i++) {
+    var pair = vars[i].split("=");
+    if (pair[0] == variable) {
+      return pair[1];
+    }
+  }
+}
+
 function runScan(url){
 	console.log("Client: Running scan on url " + url);
+  var email = getQueryVariable("email");
 	jQuery.ajax({
 		type: "POST",
-		url: "../SiteScan.php",
+		url: "../SiteScan.php?email=" + email,
 		dataType: "json",
 		data: {"url" : url},
 		success: function(obj){

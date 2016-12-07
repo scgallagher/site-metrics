@@ -41,22 +41,36 @@
 			return false;
 		}
 
-
+		private function stripProtocol($url){
+			if(preg_match('/^(http:\/\/|https:\/\/)localhost/', $url)){
+				$url = "127.0.0.1";
+				FB::log($url);
+			}
+			else if(preg_match('/^(http:\/\/|https:\/\/)/', $url, $matches)){
+				$url = str_replace($matches[0], "", $url);
+				FB::log($url);
+			}
+			return $url;
+		}
 
 		private function getRequestTime($url){
 			$starttime = microtime(true);
+			// fsockopen doesn't accept url's with the protocol - http:// or https://
+			// must be stripped
+			$url = $this->stripProtocol($url);
 			$file = @fsockopen($url, 80, $errNumber, $errText, 30);
 			$endtime = microtime(true);
 
 			$time = 0;
 			if(!$file) {
+				FB::log("file did not open - $errText");
 				$time = -1;
 			} else {
 				fclose($file);
 				$time = ($endtime - $starttime) * 1000000;
 				$time = round($time, 2);
 			}
-			return $time;
+			return round($time);
 		}
 	}
 

@@ -19,6 +19,7 @@
 			$results = array();
 			$results["testPassed"] = $this->testPassed;
 			$results["redirectsResult"] = $this->redirectsResult;
+			$results["redirectCount"] = $this->redirectCount;
 			$results["rating"] = $this->rating;
 			return $results;
 		}

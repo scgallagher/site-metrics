@@ -204,43 +204,48 @@ function update_mobile_viewportOptimization(result){
 // Update Performance sections
 
 function update_performance_browserCaching(result){
-  var passed = result.testPassed;
+  var rating = result.rating;
   console.log("PERFORMANCE - BROWSER CACHING");
   console.log("  Size:\t\t" + result.cookiesSizeInBytes + "b");
   console.log("  Cookies\t" + result.cookiesCount);
-  console.log("  Rating:\t" + result.browserCachingResult);
-	if(passed === true){
-		$("#pf_browserCaching").parent().addClass("pass");
-		$("#pf_browserCaching").text("pass");
+  console.log("  Rating:\t" + result.rating.toLowerCase());
+	if(rating.toLowerCase() === "good"){
+    $("#pf_browserCaching").parent().addClass("good");
 	}
-	else if(passed === false){
-		$("#pf_browserCaching").parent().addClass("fail");
-		$("#pf_browserCaching").text("fail");
+	else if(rating.toLowerCase() === "okay"){
+		$("#pf_browserCaching").parent().addClass("okay");
 	}
+  else if(rating.toLowerCase() === "bad"){
+    $("#pf_browserCaching").parent().addClass("bad");
+  }
 	else {
 		$("#pf_browserCaching").parent().addClass("na");
 		$("#pf_browserCaching").text("n/a");
 	}
+  $("#data_browserCaching").text("Cache Size:\t" + result.cookiesSizeInBytes +
+    "\nCookies:\t" + result.cookiesCount);
 }
 
 function update_performance_compression(result){
-  var passed = result.testPassed;
+  var rating = result.rating;
   // log metrics to console here
   console.log("PERFORMANCE - COMPRESSION");
   console.log("  Percentage:\t" + result.compressionPercentage);
   console.log("  Rating:\t" + result.compressionResult);
-	if(passed === true){
-		$("#pf_compression").parent().addClass("pass");
-		$("#pf_compression").text("pass");
+	if(rating.toLowerCase() === "good"){
+		$("#pf_compression").parent().addClass("good");
 	}
-	else if(passed === false){
-		$("#pf_compression").parent().addClass("fail");
-		$("#pf_compression").text("fail");
+	else if(rating.toLowerCase() === "okay"){
+		$("#pf_compression").parent().addClass("okay");
 	}
+  else if(rating.toLowerCase() === "bad"){
+    $("#pf_compression").parent().addClass("bad");
+  }
 	else {
 		$("#pf_compression").parent().addClass("na");
 		$("#pf_compression").text("n/a");
 	}
+  $("#data_compression").text("Compression:\t" + result.compressionPercentage + "%");
 }
 
 function update_performance_httpRequests(result){
@@ -264,63 +269,69 @@ function update_performance_httpRequests(result){
 }
 
 function update_performance_pageLoad(result){
-  var passed = result.testPassed;
+  var rating = result.rating;
   console.log("PERFORMANCE - PAGE LOAD");
   console.log("  Load Time:\t" + result.loadTimeInSeconds + "s");
-  console.log("  Rating\t" + result.pageLoadResult);
-	if(passed === true){
-		$("#pf_pageLoad").parent().addClass("pass");
-		$("#pf_pageLoad").text("pass");
+  console.log("  Rating\t" + result.rating);
+	if(rating.toLowerCase() === "good"){
+		$("#pf_pageLoad").parent().addClass("good");
 	}
-	else if(passed === false){
-		$("#pf_pageLoad").parent().addClass("fail");
-		$("#pf_pageLoad").text("fail");
+	else if(rating.toLowerCase() === "okay"){
+		$("#pf_pageLoad").parent().addClass("okay");
 	}
+  else if(rating.toLowerCase() === "bad"){
+    $("#pf_pageLoad").parent().addClass("bad");
+  }
 	else {
 		$("#pf_pageLoad").parent().addClass("na");
-		$("#pf_pageLoad").text("n/a");
 	}
+  $("#data_pageLoad").text("Load Time:\t" + result.loadTimeInSeconds + "s");
 }
 
 
 function update_performance_pageRedirects(result){
-  var passed = result.testPassed;
+  var rating = result.rating;
   console.log("PERFORMANCE - PAGE REDIRECTS");
   console.log("  Rating:\t" + result.redirectsResult);
-	if(passed === true){
-		$("#pf_pageRedirects").parent().addClass("pass");
-		$("#pf_pageRedirects").text("pass");
+	if(rating.toLowerCase() === "good"){
+		$("#pf_pageRedirects").parent().addClass("good");
 	}
-	else if(passed === false){
-		$("#pf_pageRedirects").parent().addClass("fail");
-		$("#pf_pageRedirects").text("fail");
+	else if(rating.toLowerCase() === "okay"){
+		$("#pf_pageRedirects").parent().addClass("okay");
+	}
+  else if(rating.toLowerCase() === "bad"){
+		$("#pf_pageRedirects").parent().addClass("bad");
 	}
 	else {
 		$("#pf_pageRedirects").parent().addClass("na");
 		$("#pf_pageRedirects").text("n/a");
 	}
+  $("#data_pageRedirects").text("Redirects:\t" + result.redirectCount);
 }
 
 function update_performance_pageSize(result){
-  var passed = result.testPassed;
+  var rating = result.rating;
   console.log("PERFORMANCE - PAGE SIZE");
   console.log("  Rating:\t" + result.pageSizeResult);
-	if(passed === true){
-		$("#pf_pageSize").parent().addClass("pass");
-		$("#pf_pageSize").text("pass");
+	if(rating.toLowerCase() === "good"){
+		$("#pf_pageSize").parent().addClass("good");
 	}
-	else if(passed === false){
-		$("#pf_pageSize").parent().addClass("fail");
-		$("#pf_pageSize").text("fail");
+	else if(rating.toLowerCase() === "okay"){
+		$("#pf_pageSize").parent().addClass("okay");
 	}
+  else if(rating.toLowerCase() === "bad"){
+    $("#pf_pageSize").parent().addClass("bad");
+  }
 	else {
 		$("#pf_pageSize").parent().addClass("na");
 		$("#pf_pageSize").text("n/a");
 	}
+  var pageSizeInKB = Math.round(result.pageSizeInBytes / 1024);
+  $("#data_pageSize").text("Page Size:\t" + pageSizeInKB + "KB");
 }
 
 function update_performance_renderBlocking(result){
-  var passed = result.testPassed;
+  var rating = result.rating;
   console.log("PERFORMANCE - RENDER BLOCKING");
   console.log("  CSS Import\t\t" + result.cssImportResult);
   console.log("  Link Tags:\t\t" + result.linkTagsWithMediaAttributeResult);
@@ -328,16 +339,18 @@ function update_performance_renderBlocking(result){
   console.log("  Scripts in Head:\t" + result.scriptTagsInHeadResult);
   console.log("  On Load:\t\t" + result.onLoadResult);
   console.log("  Score:\t\t" + result.score + "%");
-	if(passed === true){
-		$("#pf_renderBlocking").parent().addClass("pass");
-		$("#pf_renderBlocking").text("pass");
+	if(rating.toLowerCase() === "good"){
+		$("#pf_renderBlocking").parent().addClass("good");
 	}
-	else if(passed === false){
-		$("#pf_renderBlocking").parent().addClass("fail");
-		$("#pf_renderBlocking").text("fail");
+	else if(rating.toLowerCase() === "okay"){
+		$("#pf_renderBlocking").parent().addClass("okay");
 	}
+  else if(rating.toLowerCase() === "bad"){
+    $("#pf_renderBlocking").parent().addClass("bad");
+  }
 	else {
 		$("#pf_renderBlocking").parent().addClass("na");
 		$("#pf_renderBlocking").text("n/a");
 	}
+  $("#data_renderBlocking").text("Score:\t" + result.score + "%");
 }

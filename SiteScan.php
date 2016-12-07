@@ -34,8 +34,8 @@ header("Content-Type: application/json");
 			$scanController = new ScanController($url);
 			$resultsAll = $scanController->scan();
 			$json["results"] = $resultsAll->parseJSON();
-			// $dm = new DataManager($url, $email, $resultsAll);
-			// $dm->write();
+			$dm = new DataManager($url, $email, $resultsAll);
+			$dm->write();
 		}
 
 		echo json_encode($json);

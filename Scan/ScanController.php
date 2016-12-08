@@ -74,11 +74,16 @@
 			curl_setopt($curlHandle, CURLOPT_RETURNTRANSFER, true);
 			$this->source = curl_exec($curlHandle);
 
+
 			if(curl_error($curlHandle)){
 				throw new urlException(curl_error($curlHandle));
 				//FB::log(curl_error($curlHandle));
 			}
-			FB::log($this->source);
+			$returnCode = curl_getinfo($curlHandle, CURLINFO_HTTP_CODE);
+			if($returnCode != 200){
+				throw new urlException("URL Error: request returned response code $returnCode");
+			}
+			//FB::log($this->source);
 			//Set $header to the verbose output returned by curl_exec
 			fseek($headerText, 0);
 			while(strlen($this->header .= fread($headerText, 8192)) == 8192);

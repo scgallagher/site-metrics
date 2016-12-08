@@ -41,13 +41,17 @@ function runScan(url){
 		dataType: "json",
 		data: {"url" : url},
 		success: function(obj){
+      if("sqlError" in obj){
+        console.log(obj.sqlError);
+      }
+
       if("urlError" in obj){
-        console.log(obj.urlError);
+        console.log(obj.urlError.message);
+        confirm(obj.urlError.message);
+        location.replace(
+          "http://localhost/wordpress/wp-content/plugins/site-metrics/UI/interface.html?email=" + email);
       }
       else {
-          if("sqlError" in obj){
-            console.log(obj.sqlError);
-          }
           scanComplete(obj);
       }
 		},

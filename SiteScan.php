@@ -16,6 +16,7 @@ header("Content-Type: application/json");
 	require_once("Scan/ScanController.php");
 	include_once("firephp-core-0.4.0/lib/FirePHPCore/fb.php");
 	require_once("DataManager.php");
+	require_once("Data/Exceptions/urlException.php");
 
 	//cli();
 	web();
@@ -31,6 +32,7 @@ header("Content-Type: application/json");
 	function web(){
 		$email = $_GET["email"];
 		$json = array();
+		$validURL = true;
 
 		if(!isset($_POST["url"])){
 		  $json["error"] = "URL not set!";
@@ -41,18 +43,30 @@ header("Content-Type: application/json");
 			FB::info("Server: Running scan on URL $url");
 			FB::info("Email: $email");
 
-			$scanController = new ScanController($url);
-			$resultsAll = $scanController->scan();
-			$json["results"] = $resultsAll->parseJSON();
 			try{
-				$dm = new DataManager($url, $email, $resultsAll);
-				$dm->write();
+				$scanController = new ScanController($url);
+				$resultsAll = $scanController->scan();
+				$json["results"] = $resultsAll->parseJSON();
 			}
-			catch(PDOException $e){
-				$json["sqlError"] = "SQL Error:\n  " . $e->getMessage() .
-					"\nResults were NOT written to database.";
-				//FB::log($e->getMessage());
+			catch(urlException $e){
+				//$json["urlError"] = array($e->getHeading(), $e->errorMessage());
+				$json["urlError"] = array();
+				$json["urlError"]["heading"] = $e->getHeading();
+				$json["urlError"]["message"] = $e->errorMessage();
+				$validURL = false;
 			}
+
+			if($validURL){
+				try{
+					$dm = new DataManager($url, $email, $resultsAll);
+					$dm->write();
+				}
+				catch(PDOException $e){
+					$json["sqlError"] = "SQL Error:\n  " . $e->getMessage() .
+						"\nResults were NOT written to database.";
+				}
+			}
+
 		}
 
 		echo json_encode($json);

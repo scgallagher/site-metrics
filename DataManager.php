@@ -13,10 +13,11 @@ class DataManager {
   private $results;
 
   public function __construct($url, $email, $results){
+    
     $this->url = $url;
     $this->email = $email;
     $this->results = $results;
-    //$connection = new mysqli($this->host, $this->username, $this->password, $this->dbName);
+
     //$this->username = "wrong";
     $connection = new PDO("mysql:host=$this->host;dbname=$this->dbName",
       $this->username, $this->password);

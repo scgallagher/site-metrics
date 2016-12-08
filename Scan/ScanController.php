@@ -5,6 +5,7 @@
 	require_once("Scan/Scan_Mobile.php");
 	require_once("Scan/Scan_Performance.php");
 	require_once("Scan/Scan_Security.php");
+	require_once("Data/Exceptions/urlException.php");
 
 	include_once("firephp-core-0.4.0/lib/FirePHPCore/fb.php");
 
@@ -71,12 +72,17 @@
 			curl_setopt($curlHandle, CURLOPT_RETURNTRANSFER, true);
 			$this->source = curl_exec($curlHandle);
 
+			if(curl_error($curlHandle)){
+				throw new urlException(curl_error($curlHandle));
+				//FB::log(curl_error($curlHandle));
+			}
+
 			//Set $header to the verbose output returned by curl_exec
 			fseek($headerText, 0);
 			while(strlen($this->header .= fread($headerText, 8192)) == 8192);
 			// $header now contains header information for the curl
 			// operation that can be parsed to get size and load time
-			FB::info($this->header);
+
 			curl_close($curlHandle);
 
 		}

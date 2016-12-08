@@ -8,9 +8,11 @@
 
 		private $dom;
 		public $resultsMobile;
+		public $url;
 
-		public function __construct($dom){
+		public function __construct($dom, $url){
 			$this->dom = $dom;
+			$this->url = $url;
 			$this->resultsMobile = new Results_Mobile();
 		}
 
@@ -21,7 +23,7 @@
 		}
 
 		private function runScan_Responsiveness(){
-			$scanResponsiveness = new Scan_Responsiveness($this->dom);
+			$scanResponsiveness = new Scan_Responsiveness($this->dom, $this->url);
 			return $scanResponsiveness->scan();
 		}
 

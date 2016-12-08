@@ -7,9 +7,11 @@
 		private $dom;
 		private $resultsResponsiveness;
 		private $mediaQueries = 0;
+		private $url;
 
-		public function __construct($dom){
+		public function __construct($dom, $url){
 			$this->dom = $dom;
+			$this->url = $url;
 			$this->resultsResponsiveness = new Results_Responsiveness();
 		}
 
@@ -28,6 +30,20 @@
 			return $this->resultsResponsiveness;
 		}
 
+		public function getFullUrl($href){
+			if(!preg_match('/^(http:\/\/|https:\/\/)/', $href)){
+				$tokens = explode("/", $this->url);
+				$last = $tokens[count($tokens) - 1];
+				if(preg_match('/.+\\..+/', $last)){
+					$href = substr($this->url, 0, strlen($this->url) - strlen($last)) . $href;
+				}
+				else {
+					$href = $this->url . $href;
+				}
+			}
+			return $href;
+		}
+
 		public function CheckTags(){
 			$linkTags = $this->dom->getElementsByTagName("link");
 			//FB::log("got tags!");
@@ -35,8 +51,13 @@
 				if($linkTag->hasAttribute("rel")){
 					$linkContents = $linkTag->getAttribute("rel");
 					if($linkContents == "stylesheet"){
-						$url = $linkTag->getAttribute("href");
-						$source = $this->getSource($url);
+						$href = $linkTag->getAttribute("href");
+						FB::log($href);
+						FB::log($this->url);
+						$href = $this->getFullUrl($href);
+						FB::log($href);
+						$source = $this->getSource($href);
+						FB::log($source);
 						if($this->CheckMediaQueries($source)){
 								$this->mediaQueries++;
 						}

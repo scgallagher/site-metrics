@@ -43,7 +43,7 @@
 		}
 
 		public function runScan_Mobile(){
-			$scanMobile = new Scan_Mobile($this->dom);
+			$scanMobile = new Scan_Mobile($this->dom, $this->url);
 			return $scanMobile->scan();
 		}
 

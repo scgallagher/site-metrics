@@ -44,8 +44,15 @@ header("Content-Type: application/json");
 			$scanController = new ScanController($url);
 			$resultsAll = $scanController->scan();
 			$json["results"] = $resultsAll->parseJSON();
-			$dm = new DataManager($url, $email, $resultsAll);
-			$dm->write();
+			try{
+				$dm = new DataManager($url, $email, $resultsAll);
+				$dm->write();
+			}
+			catch(PDOException $e){
+				$json["sqlError"] = "SQL Error:\n  " . $e->getMessage() .
+					"\nResults were NOT written to database.";
+				//FB::log($e->getMessage());
+			}
 		}
 
 		echo json_encode($json);

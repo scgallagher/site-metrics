@@ -17,9 +17,11 @@ class DataManager {
     $this->email = $email;
     $this->results = $results;
     //$connection = new mysqli($this->host, $this->username, $this->password, $this->dbName);
+    //$this->username = "wrong";
     $connection = new PDO("mysql:host=$this->host;dbname=$this->dbName",
       $this->username, $this->password);
     $connection->setAttribute( PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+
     $this->connection = $connection;
   }
 

@@ -41,7 +41,15 @@ function runScan(url){
 		dataType: "json",
 		data: {"url" : url},
 		success: function(obj){
-			scanComplete(obj);
+      if("urlError" in obj){
+        console.log(obj.urlError);
+      }
+      else {
+          if("sqlError" in obj){
+            console.log(obj.sqlError);
+          }
+          scanComplete(obj);
+      }
 		},
     error: function( jqXHR, textStatus, errorThrown){
       console.log(textStatus);
@@ -50,7 +58,7 @@ function runScan(url){
 }
 
 function scanComplete(obj){
-  console.log("here");
+
 	update_security_ssl(obj.results.resultsSecurity.resultsSSL);
 	update_security_sqlInjection(obj.results.resultsSecurity.resultsSQLInjection);
 

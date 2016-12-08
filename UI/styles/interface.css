@@ -66,6 +66,10 @@ input:focus {
   cursor: default;
 }
 
+#spnError {
+  font-size: 5em;
+}
+
 .control-container {
   padding: 0;
 }

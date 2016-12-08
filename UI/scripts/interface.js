@@ -1,6 +1,7 @@
 $(function() {
   $("#txtScanTarget").val("localhost");
 	$("#resultsPage").hide();
+  $("#errorPage").hide();
 	$("#btnScan").click(scan);
 });
 
@@ -56,7 +57,8 @@ function runScan(url){
       }
 		},
     error: function( jqXHR, textStatus, errorThrown){
-      console.log(textStatus);
+      console.log("Error: " + textStatus);
+      $("#errorPage").show();
     }
 	});
 }

@@ -2,6 +2,10 @@ $(function() {
   $("#txtScanTarget").val("localhost");
 	$("#resultsPage").hide();
   $("#errorPage").hide();
+  $("body").keypress(function(e){
+    if(e.keyCode === 13)
+      $("#btnScan").click();
+  });
 	$("#btnScan").click(scan);
 });
 
@@ -14,7 +18,7 @@ function scan(){
 function getURL(){
   var url = $("#txtURL").val();
   if(url == ""){
-    url = "http://localhost/wordpress";
+    url = "http://localhost/wordpress/";
   }
   else if(url.match(/^(http:\/\/|https:\/\/)/) == null){
     url = "http://" + url;

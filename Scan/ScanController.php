@@ -68,6 +68,8 @@
 			curl_setopt($curlHandle, CURLOPT_CERTINFO, 1);
 			curl_setopt($curlHandle, CURLOPT_VERBOSE, 1);
 			curl_setopt($curlHandle, CURLOPT_STDERR, $headerText);
+			// Follow redirects
+			curl_setopt($curlHandle, CURLOPT_FOLLOWLOCATION, true);
 			//curl_setopt($curlHandle, CURLOPT_FILE, $srcText);
 			curl_setopt($curlHandle, CURLOPT_RETURNTRANSFER, true);
 			$this->source = curl_exec($curlHandle);
@@ -76,7 +78,7 @@
 				throw new urlException(curl_error($curlHandle));
 				//FB::log(curl_error($curlHandle));
 			}
-
+			FB::log($this->source);
 			//Set $header to the verbose output returned by curl_exec
 			fseek($headerText, 0);
 			while(strlen($this->header .= fread($headerText, 8192)) == 8192);

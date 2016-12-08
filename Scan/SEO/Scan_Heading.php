@@ -16,7 +16,7 @@
 			$this->resultsHeading->h1Count = $this->countH1();
 			$this->resultsHeading->h2Count = $this->countH2();
 			$this->resultsHeading->h3Count = $this->countH3();
-			
+
 			$this->resultsHeading->rating = $this->getRating();
 			$this->resultsHeading->testPassed = $this->testPassed();
 
@@ -59,8 +59,8 @@
 			if($this->resultsHeading->hasH1 && $this->resultsHeading->h1Count == 1){
 				return "good";
 			}
-			else if(!$this->resultsHeading->hasH1 && $this->resultsHeading->hasH2
-				&& $this->resultsHeading->hasH3){
+			else if(!$this->resultsHeading->hasH1 && $this->resultsHeading->h2Count > 0
+				&& $this->resultsHeading->h2Count > 0){
 					return "okay";
 			}
 			else {

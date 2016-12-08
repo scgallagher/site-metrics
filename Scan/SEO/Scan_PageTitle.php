@@ -46,7 +46,7 @@ class Scan_PageTitle {
 
 	private function getRating(){
 		$results = $this->resultsPageTitle;
-		if($results->charCount < 60){
+		if($results->charCount > 0 && $results->charCount < 60){
 			return "good";
 		}
 		else if($results->charCount > 60 && $results->charCount <= 80){

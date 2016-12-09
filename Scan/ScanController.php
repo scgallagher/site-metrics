@@ -58,8 +58,10 @@
 		}
 
 		private function getSource(){
-			// $srcText = tmpfile();
-			$headerText = tmpfile();
+
+			//$headerText = tmpfile();
+			$temp = tempnam(getcwd() . "/Data/temp", "tmp");
+			$headerText = fopen($temp, "w+");
 			$curlHandle = curl_init();
 
 			curl_setopt($curlHandle, CURLOPT_URL, $this->url);
@@ -89,6 +91,9 @@
 			while(strlen($this->header .= fread($headerText, 8192)) == 8192);
 			// $header now contains header information for the curl
 			// operation that can be parsed to get size and load time
+			FB::info(getcwd());
+			FB::info("Header: $this->header");
+			//FB::log("Temp Dir: " . sys_get_temp_dir());
 
 			curl_close($curlHandle);
 

@@ -12,6 +12,7 @@ header("Content-Type: application/json");
 	// being thrown by ScanController.php THE PAGE WILL NOT LOAD WITHOUT THIS SET
 	ini_set('display_errors', 'Off');
  	error_reporting(E_ALL & ~E_WARNING & ~E_NOTICE);
+	error_reporting(E_ALL);
 
 	require_once("Scan/ScanController.php");
 	include_once("firephp-core-0.4.0/lib/FirePHPCore/fb.php");
@@ -22,11 +23,12 @@ header("Content-Type: application/json");
 	web();
 
 	function cli(){
-		$scanController = new ScanController("http://localhost/wordpress/");
+		$scanController = new ScanController("https://expired.badssl.com/");
+		//$scanController = new ScanController("https://www.nhl.com/");
 		$resultsAll = $scanController->scan();
 		$resultsAll->parseJSON();
-		$dm = new DataManager("http://localhost/wordpress/", "seangallagher135@gmail.com", $resultsAll);
-		$dm->write();
+		// $dm = new DataManager("https://expired.badssl.com/", "seangallagher135@gmail.com", $resultsAll);
+		// $dm->write();
 	}
 
 	function web(){

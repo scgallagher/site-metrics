@@ -39,6 +39,7 @@
 			$this->resultsSSL->hasCert = $this->getCertInfo();
 			if($this->resultsSSL->hasCert){
 				$this->resultsSSL->certExpired = $this->isExpired($this->certificate->expiration);
+				//FB::log("here");
 				$this->resultsSSL->issuer = $this->certificate->issuer;
 				$this->resultsSSL->isVerified = $this->certificate->isVerified;
 			}
@@ -69,8 +70,9 @@
 			$end = strpos($this->httpHeader, "\n", $index);
 			$expirationString = substr($this->httpHeader, $index, ($end - $index));
 			// Test the fuck out of this, I don't trust it
-			$expiration = DateTime::createFromFormat('M  j h:i:s Y e', 	$expirationString);
-			//echo $expiration->format('M j h:i:s Y e') . "\n";
+			// Update: Tested the fuck out of this, seems chill
+			$expiration = DateTime::createFromFormat('M d H:i:s Y e', 	$expirationString);
+
 			return $expiration;
 		}
 
@@ -98,9 +100,7 @@
 		private function isExpired($expiration){
 
 			$now = new DateTime();
-			//echo $expiration->format('M j h:i:s Y e') . "\n";
-
-			if($expiration->diff($now) < 1){
+			if($expiration < $now){
 				return true;
 			}
 			return false;
@@ -119,6 +119,7 @@
 		}
 
 		private function getRating(){
+
 			if($this->resultsSSL->hasCert && !$this->resultsSSL->certExpired){
 				return "good";
 			}

@@ -46,18 +46,13 @@
 
 		public function CheckTags(){
 			$linkTags = $this->dom->getElementsByTagName("link");
-			//FB::log("got tags!");
 			foreach ($linkTags as $linkTag) {
 				if($linkTag->hasAttribute("rel")){
 					$linkContents = $linkTag->getAttribute("rel");
 					if($linkContents == "stylesheet"){
 						$href = $linkTag->getAttribute("href");
-						FB::log($href);
-						FB::log($this->url);
 						$href = $this->getFullUrl($href);
-						FB::log($href);
 						$source = $this->getSource($href);
-						FB::log($source);
 						if($this->CheckMediaQueries($source)){
 								$this->mediaQueries++;
 						}
@@ -91,8 +86,7 @@
 		}
 
 		private function getSource($url){
-			// $srcText = tmpfile();
-			$headerText = tmpfile();
+
 			$curlHandle = curl_init();
 
 			curl_setopt($curlHandle, CURLOPT_URL, $url);
@@ -100,8 +94,8 @@
 			//curl_setopt($curlHandle, CURLOPT_SSL_VERIFYHOST, 0);
 		  //curl_setopt($curlHandle, CURLOPT_CERTINFO, 1);
 			//curl_setopt($curlHandle, CURLOPT_VERBOSE, 1);
-			curl_setopt($curlHandle, CURLOPT_STDERR, $headerText);
-			//curl_setopt($curlHandle, CURLOPT_FILE, $srcText);
+			// Follow redirects
+			curl_setopt($curlHandle, CURLOPT_FOLLOWLOCATION, true);
 			curl_setopt($curlHandle, CURLOPT_RETURNTRANSFER, true);
 			$source = curl_exec($curlHandle);
 			curl_close($curlHandle);

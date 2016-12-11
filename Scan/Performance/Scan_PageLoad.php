@@ -55,21 +55,12 @@
 
 		private function getRequestTime($url){
 			$starttime = microtime(true);
-			// fsockopen doesn't accept url's with the protocol - http:// or https://
-			// must be stripped
-			$url = $this->stripProtocol($url);
-			$file = @fsockopen($url, 80, $errNumber, $errText, 30);
+			$content = file_get_contents($url);
 			$endtime = microtime(true);
 
-			$time = 0;
-			if(!$file) {
-				//FB::log("file did not open - $errText");
-				$time = -1;
-			} else {
-				fclose($file);
-				$time = ($endtime - $starttime);
-				$time = round($time, 2);
-			}
+			$time = ($endtime - $starttime);
+			$time = round($time, 2);
+			
 			return $time;
 		}
 	}

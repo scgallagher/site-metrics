@@ -15,6 +15,7 @@ header("Content-Type: application/json");
 	error_reporting(E_ALL);
 
 	require_once("Scan/ScanController.php");
+	require_once("Email/EmailController.php");
 	include_once("firephp-core-0.4.0/lib/FirePHPCore/fb.php");
 	require_once("DataManager.php");
 	require_once("Data/Exceptions/urlException.php");
@@ -49,6 +50,9 @@ header("Content-Type: application/json");
 				$scanController = new ScanController($url);
 				$resultsAll = $scanController->scan();
 				$json["results"] = $resultsAll->parseJSON();
+				
+				$emailController = new EmailController();
+				$addContactResult = $emailController->addContact(new Contact($email));
 			}
 			catch(urlException $e){
 				//$json["urlError"] = array($e->getHeading(), $e->errorMessage());

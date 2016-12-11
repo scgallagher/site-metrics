@@ -54,7 +54,7 @@
 				die('JSON not supported.');
 			}
 			
-			$parameterizedUrl = $this->url . '/admin/api.php?' . $query;
+			$api = $this->url . '/admin/api.php?' . $query;
 			
 			$request = curl_init($api);
 			curl_setopt($request, CURLOPT_HEADER, 0); // set to 0 to eliminate header info from response

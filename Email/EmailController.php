@@ -1,5 +1,6 @@
 <?php
 
+	require_once("Email/ActiveCampaignInteractor.php");
 	require_once("Email/emailConfig.php");
 	include_once("firephp-core-0.4.0/lib/FirePHPCore/fb.php");
 	

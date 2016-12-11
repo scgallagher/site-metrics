@@ -18,5 +18,5 @@ NOTE: this script does NOT remove the db user created by createUser.sql
 
 Make sure the following extensions are enabled (uncommented) in php.ini
 
-extension=php_curl.dll
+extension=php_curl.dll<br>
 extension=php_pdo_mysql.dll

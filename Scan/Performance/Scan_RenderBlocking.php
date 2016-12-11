@@ -19,7 +19,6 @@
 
 		public function scan(){
 			//$this->originalSiteContents = file_get_contents($this->url);
-			$this->originalSiteContents = file_get_contents($this->url);
 
 			//Check for CSS @import
 			$this->CheckCssImport();

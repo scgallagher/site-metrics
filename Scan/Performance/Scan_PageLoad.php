@@ -67,10 +67,10 @@
 				$time = -1;
 			} else {
 				fclose($file);
-				$time = ($endtime - $starttime) * 1000000;
+				$time = ($endtime - $starttime);
 				$time = round($time, 2);
 			}
-			return round($time);
+			return $time;
 		}
 	}
 

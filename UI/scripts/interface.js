@@ -2,6 +2,7 @@ $(function() {
   $("#txtScanTarget").val("localhost");
 	$("#resultsPage").hide();
   $("#errorPage").hide();
+  $("#loadingPage").hide();
   $("body").keypress(function(e){
     if(e.keyCode === 13)
       $("#btnScan").click();
@@ -11,6 +12,7 @@ $(function() {
 
 function scan(){
 	$("#startPage").hide();
+  $("#loadingPage").show();
 	var url = getURL();
 	runScan(url);
 }
@@ -62,6 +64,7 @@ function runScan(url){
 		},
     error: function( jqXHR, textStatus, errorThrown){
       console.log("Error: " + textStatus);
+      $("#loadingPage").hide();
       $("#errorPage").show();
     }
 	});
@@ -87,6 +90,7 @@ function scanComplete(obj){
   update_performance_pageSize(obj.results.resultsPerformance.resultsPageSize);
   update_performance_renderBlocking(obj.results.resultsPerformance.resultsRenderBlocking);
 
+  $("#loadingPage").hide();
 	$("#resultsPage").show();
 
 }

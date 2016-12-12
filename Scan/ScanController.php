@@ -7,8 +7,6 @@
 	require_once("Scan/Scan_Security.php");
 	require_once("Data/Exceptions/urlException.php");
 
-	include_once("firephp-core-0.4.0/lib/FirePHPCore/fb.php");
-
 	class ScanController {
 
 		public $resultsAll;
@@ -59,7 +57,6 @@
 
 		private function getSource(){
 
-			//$headerText = tmpfile();
 			$temp = tempnam(getcwd() . "/Data/temp", "tmp");
 			$headerText = fopen($temp, "w+");
 			$curlHandle = curl_init();
@@ -72,28 +69,22 @@
 			curl_setopt($curlHandle, CURLOPT_STDERR, $headerText);
 			// Follow redirects
 			curl_setopt($curlHandle, CURLOPT_FOLLOWLOCATION, true);
-			//curl_setopt($curlHandle, CURLOPT_FILE, $srcText);
 			curl_setopt($curlHandle, CURLOPT_RETURNTRANSFER, true);
 			$this->source = curl_exec($curlHandle);
 
 
 			if(curl_error($curlHandle)){
 				throw new urlException(curl_error($curlHandle));
-				//FB::log(curl_error($curlHandle));
 			}
 			$returnCode = curl_getinfo($curlHandle, CURLINFO_HTTP_CODE);
 			if($returnCode != 200){
 				throw new urlException("URL Error: request returned response code $returnCode");
 			}
-			//FB::log($this->source);
 			//Set $header to the verbose output returned by curl_exec
 			fseek($headerText, 0);
 			while(strlen($this->header .= fread($headerText, 8192)) == 8192);
 			// $header now contains header information for the curl
 			// operation that can be parsed to get size and load time
-			FB::info(getcwd());
-			FB::info("Header: $this->header");
-			//FB::log("Temp Dir: " . sys_get_temp_dir());
 
 			curl_close($curlHandle);
 
@@ -105,16 +96,6 @@
 			$this->dom->loadHTML($this->source);
 			libxml_use_internal_errors(false);
 
-		}
-
-		private function testDom(){
-			$title = $this->dom->getElementsByTagName("title");
-			echo "Title Tags: " . $title->length . "\n";
-
-			// Prints inner html of title tag
-			foreach($title as $tag){
-				echo $tag->nodeValue . "\n";
-			}
 		}
 
 	}

@@ -15,7 +15,6 @@
 
 		public function scan(){
 			$this->CheckforContentViewport();
-			$this->resultsViewportOptimization->testPassed = $this->testPassed();
 			$this->resultsViewportOptimization->rating = $this->getRating();
 			//return results
 			return $this->resultsViewportOptimization;
@@ -36,16 +35,6 @@
 			//if not found, it is not enabled
 			$this->resultsViewportOptimization->usesContentViewport = "No";
 			return;
-		}
-
-		private function testPassed(){
-			$result = $this->resultsViewportOptimization->usesContentViewport;
-			if($result == "Yes"){
-				return true;
-			}
-			else {
-				return false;
-			}
 		}
 
 		private function getRating(){

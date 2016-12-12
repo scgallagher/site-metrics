@@ -42,21 +42,9 @@
 			else
 				$this->resultsBrowserCaching->browserCachingResult = "Bad";
 
-			$this->resultsBrowserCaching->testPassed = $this->testPassed();
 			$this->resultsBrowserCaching->rating = $this->resultsBrowserCaching->browserCachingResult;
 			return $this->resultsBrowserCaching;
 		}
-
-		public function testPassed(){
-			if (strtolower($this->resultsBrowserCaching->browserCachingResult) == "good")
-			{
-				return true;
-			}
-
-			return false;
-		}
-
-
 
 		private function getLandingCookies($url){
 			$curl = curl_init();

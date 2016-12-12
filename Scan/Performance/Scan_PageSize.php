@@ -33,19 +33,8 @@
 			else
 				$this->resultsPageSize->pageSizeResult = "Bad";
 
-				$this->resultsPageSize->testPassed = $this->testPassed();
 				$this->resultsPageSize->rating =	$this->resultsPageSize->pageSizeResult;
 			return $this->resultsPageSize;
-		}
-
-		public function testPassed()
-		{
-			if (strtolower($this->resultsPageSize->pageSizeResult) == "good")
-			{
-				return true;
-			}
-
-			return false;
 		}
 
 	}

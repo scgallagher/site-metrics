@@ -41,20 +41,9 @@
 			else
 				$this->resultsCompression->compressionResult = "Bad";
 
-				$this->resultsCompression->testPassed = $this->testPassed();
 				$this->resultsCompression->rating = $this->resultsCompression->compressionResult;
 			//Return result
 			return $this->resultsCompression;
-		}
-
-		public function testPassed()
-		{
-			if (strtolower($this->resultsCompression->compressionResult) == "good")
-			{
-				return true;
-			}
-
-			return false;
 		}
 
 	}

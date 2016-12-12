@@ -34,7 +34,6 @@
 			//Check if onLoad() is used to load JS
 			$this->CheckForOnLoad();
 
-			$this->resultsRenderBlocking->testPassed = $this->testPassed();
 			$this->resultsRenderBlocking->rating = $this->getRating();
 			//Return results
 			return $this->resultsRenderBlocking;
@@ -121,20 +120,6 @@
 				$this->resultsRenderBlocking->onLoadResult = "Okay";
 			else
 				$this->resultsRenderBlocking->onLoadResult = "Bad";
-		}
-
-		public function testPassed()
-		{
-			if (strtolower($this->resultsRenderBlocking->cssImportResult) == "good"
-				&& strtolower($this->resultsRenderBlocking->linkTagsWithMediaAttributeResult) == "good"
-				&& strtolower($this->resultsRenderBlocking->multipleCssResult) == "good"
-				&& strtolower($this->resultsRenderBlocking->scriptTagsInHeadResult) == "good"
-				&& strtolower($this->resultsRenderBlocking->onLoadResult) == "good")
-			{
-				return true;
-			}
-
-			return false;
 		}
 
 		public function getRating(){

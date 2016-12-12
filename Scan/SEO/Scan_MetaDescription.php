@@ -19,7 +19,6 @@
 			if ($this->resultsMetaDescription->hasMetaDescription) {
 				$this->resultsMetaDescription->charCount = $this->getCharCount();
 			}
-			$this->resultsMetaDescription->testPassed = $this->testPassed();
 			$this->resultsMetaDescription->rating = $this->getRating();
 			return $this->resultsMetaDescription;
 		}
@@ -39,15 +38,6 @@
 
 		private function getCharCount(){
 			return strlen($this->metaDescription);
-		}
-
-		private function testPassed(){
-			$count = $this->resultsMetaDescription->charCount;
-			if($this->resultsMetaDescription->hasMetaDescription &&
-				$count >= 150 && $count <= 160){
-				return true;
-			}
-			return false;
 		}
 
 		private function getRating(){

@@ -41,7 +41,6 @@
 				$this->resultsSSL->issuer = $this->certificate->issuer;
 				$this->resultsSSL->isVerified = $this->certificate->isVerified;
 			}
-			$this->resultsSSL->testPassed = $this->testPassed();
 			$this->resultsSSL->rating = $this->getRating();
 			return $this->resultsSSL;
 		}
@@ -94,18 +93,6 @@
 				return true;
 			}
 			return false;
-		}
-
-		private function testPassed(){
-			if(!$this->resultsSSL->hasCert){
-				return "Not Applicable";
-			}
-			else if($this->resultsSSL->certExpired){
-				return false;
-			}
-			else {
-				return true;
-			}
 		}
 
 		private function getRating(){

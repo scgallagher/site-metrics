@@ -18,7 +18,6 @@
 			$this->resultsHeading->h3Count = $this->countH3();
 
 			$this->resultsHeading->rating = $this->getRating();
-			$this->resultsHeading->testPassed = $this->testPassed();
 
 			return $this->resultsHeading;
 		}
@@ -43,16 +42,6 @@
 		private function countH3(){
 			$h3_list = $this->dom->getElementsByTagName("h3");
 			return $h3_list->length;
-		}
-
-		private function testPassed(){
-			if(!$this->resultsHeading->hasH1 ||
-				$this->resultsHeading->h1Count > 1){
-				return false;
-			}
-			else{
-				return true;
-			}
 		}
 
 		private function getRating(){

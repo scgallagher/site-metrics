@@ -36,7 +36,6 @@
 			else
 				$this->resultsPageRedirects->redirectsResult = "ERROR";
 
-				$this->resultsPageRedirects->testPassed = $this->testPassed();
 				$this->resultsPageRedirects->rating = $this->resultsPageRedirects->redirectsResult;
 			//Return results
 			return $this->resultsPageRedirects;
@@ -70,15 +69,6 @@
 			return $endUrl;
 		}
 
-		public function testPassed()
-		{
-			if (strtolower($this->resultsPageRedirects->redirectsResult) == "good")
-			{
-				return true;
-			}
-
-			return false;
-		}
 	}
 
 ?>

@@ -15,7 +15,6 @@
 		public function scan(){
 			$this->resultsHTTPRequests->requestCount = $this->countRequests();
 			//echo $this->resultsHTTPRequests;
-			$this->resultsHTTPRequests->testPassed = $this->testPassed();
 			$this->resultsHTTPRequests->rating = $this->getRating();
 			return $this->resultsHTTPRequests;
 		}
@@ -88,14 +87,6 @@
 			$list = $this->dom->getElementsByTagName($tag);
 			$count = $list->length;
 			return $count;
-		}
-
-		public function testPassed(){
-			// If http requests less than 30 - pass
-			if($this->resultsHTTPRequests->requestCount <= 30){
-				return true;
-			}
-			return false;
 		}
 
 		public function getRating(){

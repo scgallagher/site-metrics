@@ -27,18 +27,8 @@
 			else
 				$this->resultsPageLoad->pageLoadResult = "Bad";
 
-			$this->resultsPageLoad->testPassed = $this->testPassed();
 			$this->resultsPageLoad->rating = $this->resultsPageLoad->pageLoadResult;
 			return $this->resultsPageLoad;
-		}
-
-		public function testPassed(){
-			if (strtolower($this->resultsPageLoad->pageLoadResult) == "good")
-			{
-				return true;
-			}
-
-			return false;
 		}
 
 		private function stripProtocol($url){

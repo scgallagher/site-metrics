@@ -8,7 +8,6 @@
 		public $issuer;
 		public $isVerified;
 
-		public $testPassed;
 		public $rating;
 
 		public function __construct(){
@@ -18,7 +17,6 @@
 
 		public function parseJSON(){
 			$results = array();
-			$results["testPassed"] = $this->testPassed;
 			if($this->hasCert)
 				$results["hasCert"] = "Yes";
 			else
@@ -54,12 +52,6 @@
 				else
 					$output .= "No\n";
 			}
-
-			$output .= "Result: ";
-			if($this->testPassed)
-				$output .= "Pass\n";
-			else
-				$output .= "Fail\n";
 
 			return $output;
 		}

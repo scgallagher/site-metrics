@@ -6,12 +6,10 @@
 		public $h2Count;
 		public $h3Count;
 		public $wordCount;
-		public $testPassed;
 		public $rating;
 
 		public function parseJSON(){
 			$results = array();
-			$results["testPassed"] = $this->testPassed;
 			if($this->hasH1 == true){
 				$results["hasH1"] = "Yes";
 			}

@@ -4,7 +4,6 @@
 
 		//General Metric(s)
 		public $pageSizeResult;
-		public $testPassed;
 		public $rating;
 
 		//Specific Metric(s)
@@ -17,7 +16,6 @@
 
 		public function parseJSON(){
 			$results = array();
-			$results["testPassed"] = $this->testPassed;
 			$results["pageSizeResult"] = $this->pageSizeResult;
 			$results["pageSizeInBytes"] = $this->pageSizeInBytes;
 			$results["rating"] = $this->rating;

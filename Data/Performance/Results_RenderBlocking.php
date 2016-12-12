@@ -8,7 +8,6 @@
 		public $multipleCssResult;
 		public $scriptTagsInHeadResult;
 		public $onLoadResult;
-		public $testPassed;
 		public $rating;
 
 		//Specific Metric(s)
@@ -27,7 +26,6 @@
 			$results["scriptTagsInHeadResult"] = $this->scriptTagsInHeadResult;
 			$results["onLoadResult"] = $this->onLoadResult;
 			$results["score"] = $this->score;
-			$results["testPassed"] = $this->testPassed;
 			$results["rating"] = $this->rating;
 			return $results;
 		}

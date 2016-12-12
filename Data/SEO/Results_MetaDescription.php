@@ -3,7 +3,6 @@
 
 		public $hasMetaDescription;
 		public $charCount;
-		public $testPassed;
 		public $rating;
 
 		public function __construct(){
@@ -12,7 +11,6 @@
 
 		public function parseJSON(){
 			$results = array();
-			$results["testPassed"] = $this->testPassed;
 			if($this->hasMetaDescription == true){
 				$results["hasMetaDescription"] = "Yes";
 			}

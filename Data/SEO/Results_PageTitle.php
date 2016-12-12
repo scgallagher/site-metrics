@@ -5,7 +5,6 @@
 		public $hasTitle;
 		public $charCount;
 		public $isCompanyNameFirst;
-		public $testPassed;
 		public $rating;
 
 		public function __construct(){
@@ -14,7 +13,6 @@
 
 		public function parseJSON(){
 			$results = array();
-			$results["testPassed"] = $this->testPassed;
 			if($this->hasTitle == true){
 				$results["hasTitle"] = "Yes";
 			}

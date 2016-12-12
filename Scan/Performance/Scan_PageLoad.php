@@ -44,11 +44,9 @@
 		private function stripProtocol($url){
 			if(preg_match('/^(http:\/\/|https:\/\/)localhost/', $url)){
 				$url = "127.0.0.1";
-				//FB::log($url);
 			}
 			else if(preg_match('/^(http:\/\/|https:\/\/)/', $url, $matches)){
 				$url = str_replace($matches[0], "", $url);
-				//FB::log($url);
 			}
 			return $url;
 		}
@@ -60,7 +58,7 @@
 
 			$time = ($endtime - $starttime);
 			$time = round($time, 2);
-			
+
 			return $time;
 		}
 	}

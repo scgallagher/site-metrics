@@ -41,14 +41,12 @@
 		public function countStylesheets(){
 			$count = 0;
 			$list = $this->dom->getElementsByTagName("link");
-			//echo "List length: $list->length\n";
 			foreach($list as $link){
 				if($link->hasAttribute("rel") && $link->getAttribute("rel") == "stylesheet"
 					&& $link->hasAttribute("href")){
 					$count++;
 				}
 			}
-			//echo "Stylesheet Count: $count\n";
 			return $count;
 		}
 
@@ -60,7 +58,6 @@
 					$count++;
 				}
 			}
-			//echo "Script Count: $count\n";
 			return $count;
 		}
 
@@ -72,7 +69,6 @@
 					$count++;
 				}
 			}
-			//echo "Image Count: $count\n";
 			return $count;
 		}
 
@@ -84,7 +80,6 @@
 					$count++;
 				}
 			}
-			//echo "$tag count: $count\n";
 			return $count;
 		}
 
@@ -92,7 +87,6 @@
 			$count = 0;
 			$list = $this->dom->getElementsByTagName($tag);
 			$count = $list->length;
-			//echo "$tag count: $count\n";
 			return $count;
 		}
 

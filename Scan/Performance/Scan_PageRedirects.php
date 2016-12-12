@@ -20,12 +20,10 @@
 			$endUrl = $this->GetRedirectedUrl($startUrl);
 			$redirectCount = 0;
 			while ($startUrl != $endUrl) {
-				//echo "<br>" . $startUrl . " --> " . $endUrl . "<br>";
 				$redirectCount = $redirectCount + 1;
 				$startUrl = $endUrl;
 				$endUrl = $this->GetRedirectedUrl($startUrl);
 			}
-			//echo "<br>Final: " . $this->url . " --> " . $endUrl . "<br>";
 
 			//Set results
 			$this->resultsPageRedirects->redirectCount = $redirectCount;
@@ -65,7 +63,6 @@
 			foreach($headers as $header) {
 				if( substr($header, 0, 10) == "Location: " ) {
 					$endUrl = substr($header, 10); //Redirect url found - return new url
-					//echo "[$startUrl] redirects to [$endUrl]<br>";
 					break;
 				}
 			}

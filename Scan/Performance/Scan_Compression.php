@@ -18,7 +18,6 @@
 
 		public function scan(){
 			//Read in webpage
-			//$originalSiteContents = file_get_contents($this->url); //$testString = "I♥NY";
 			$originalSiteContents = $this->originalRawHTML;
 
 			//Check for simple compression
@@ -45,7 +44,6 @@
 				$this->resultsCompression->testPassed = $this->testPassed();
 				$this->resultsCompression->rating = $this->resultsCompression->compressionResult;
 			//Return result
-			//echo "<br>Compression: " . $this->resultsCompression->compressionResult . " " . $this->resultsCompression->compressionPercentage . "<br>";
 			return $this->resultsCompression;
 		}
 

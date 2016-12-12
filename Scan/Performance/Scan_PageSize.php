@@ -18,7 +18,6 @@
 
 		public function scan(){
 			//Read in webpage
-			//$originalSiteContents = file_get_contents($this->url); //$testString = "I♥NY";
 			$originalSiteContents = $this->originalRawHTML;
 
 			//Get size

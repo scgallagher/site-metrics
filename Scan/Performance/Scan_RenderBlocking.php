@@ -18,7 +18,6 @@
 		}
 
 		public function scan(){
-			//$this->originalSiteContents = file_get_contents($this->url);
 
 			//Check for CSS @import
 			$this->CheckCssImport();
@@ -42,7 +41,6 @@
 		}
 
 		private function CheckCssImport() {
-			FB::log($this->originalSiteContents);
 			if(preg_match('/@import +url\("[A-Za-z0-9\\/]+\.css"/', $this->originalSiteContents))
 				$this->resultsRenderBlocking->cssImportResult = "Bad";
 			else
@@ -55,7 +53,7 @@
 
 			$linkTags = $this->dom->getElementsByTagName('link');
 			foreach ($linkTags as $linkTag) {
-				$numLinkTags = $numLinkTags + 1; //echo $linkTag->nodeValue, PHP_EOL;
+				$numLinkTags = $numLinkTags + 1;
 
 				if ($linkTag->hasAttribute("media"))
 					$numMediaAttributes = $numMediaAttributes + 1;

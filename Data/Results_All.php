@@ -17,11 +17,7 @@
 			$results["resultsSEO"] = $this->resultsSEO->parseJSON();
 			$results["resultsMobile"] = $this->resultsMobile->parseJSON();
 			$results["resultsPerformance"] = $this->resultsPerformance->parseJSON();
-			//echo $this->resultsMobile->resultsResponsiveness->parseJSON() ."\n\n";
-			//echo $this->resultsMobile->parseJSON() ."\n\n";
-			//echo $this->resultsMobile->resultsViewportOptimization->usesContentViewport;
 			return $results;
-			//return json_encode($results);
 		}
 
 		public function __construct(){

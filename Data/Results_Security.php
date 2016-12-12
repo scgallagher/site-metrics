@@ -13,7 +13,6 @@
 			$results["resultsSSL"] = $this->resultsSSL->parseJSON();
 			$results["resultsSQLInjection"] = $this->resultsSQLInjection->parseJSON();
 			return $results;
-			//return json_encode($results);
 		}
 
 		public function __construct(){

@@ -13,12 +13,11 @@ class DataManager {
   private $results;
 
   public function __construct($url, $email, $results){
-    
+
     $this->url = $url;
     $this->email = $email;
     $this->results = $results;
 
-    //$this->username = "wrong";
     $connection = new PDO("mysql:host=$this->host;dbname=$this->dbName",
       $this->username, $this->password);
     $connection->setAttribute( PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
@@ -102,7 +101,7 @@ class DataManager {
       $stmt->execute();
     }
     catch(PDOException $e){
-      FB::log($e->getMessage());
+
     }
   }
 
@@ -132,7 +131,7 @@ class DataManager {
       $stmt->execute();
     }
     catch(PDOException $e){
-      FB::log($e->getMessage());
+
     }
 
   }
@@ -158,7 +157,7 @@ class DataManager {
       $stmt->execute();
     }
     catch(PDOException $e){
-      FB::log($e->getMessage());
+
     }
 
   }
@@ -187,7 +186,7 @@ class DataManager {
       $stmt->execute();
     }
     catch(PDOException $e){
-      FB::log($e->getMessage());
+
     }
 
   }
@@ -239,17 +238,9 @@ class DataManager {
       $stmt->execute();
     }
     catch(PDOException $e){
-      FB::log($e->getMessage());
+      
     }
 
-  }
-
-  private function write_scan_mysqli($scanID, $email, $url, $time){
-    $stmt = $this->connection->prepare("INSERT INTO scan (scan_id, email, url, time)
-      VALUES (?, ?, ?, ?)");
-    $stmt->bind_param("isss", $scanID, $email, $url, $time);
-    $stmt->execute();
-    $stmt->close();
   }
 
 }

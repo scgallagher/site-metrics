@@ -1,15 +1,7 @@
 <?php
 header("Content-Type: application/json");
 
-	// Dev error settings
-	// NOTE: CLI ONLY - Comment this section out when serving
-	// ini_set('display_errors', 1);
-	// ini_set('display_startup_errors', 1);
-	// error_reporting(E_ALL | E_STRICT);
-
 	// Prod error settings
-	// The following two lines are necessary to suppress a strange warning
-	// being thrown by ScanController.php THE PAGE WILL NOT LOAD WITHOUT THIS SET
 	ini_set('display_errors', 'Off');
  	error_reporting(E_ALL & ~E_WARNING & ~E_NOTICE);
 
@@ -19,18 +11,9 @@ header("Content-Type: application/json");
 	require_once("DataManager.php");
 	require_once("Data/Exceptions/urlException.php");
 
-	//cli();
 	web();
 
-	function cli(){
-		$scanController = new ScanController("https://expired.badssl.com/");
-		//$scanController = new ScanController("https://www.nhl.com/");
-		$resultsAll = $scanController->scan();
-		$resultsAll->parseJSON();
-		// $dm = new DataManager("https://expired.badssl.com/", "seangallagher135@gmail.com", $resultsAll);
-		// $dm->write();
-	}
-
+	// Use this function when running the plugin through Wordpress
 	function web(){
 		$email = $_GET["email"];
 		$json = array();
@@ -41,10 +24,6 @@ header("Content-Type: application/json");
 		}
 		if(!isset($json["error"])){
 			$url = $_POST["url"];
-			FB::info("URL: $url");
-			FB::info("Server: Running scan on URL $url");
-			FB::info("Email: $email");
-
 			try{
 				$scanController = new ScanController($url);
 				$resultsAll = $scanController->scan();
@@ -54,7 +33,6 @@ header("Content-Type: application/json");
 				$addContactResult = $emailController->addContact(new Contact($email));
 			}
 			catch(urlException $e){
-				//$json["urlError"] = array($e->getHeading(), $e->errorMessage());
 				$json["urlError"] = array();
 				$json["urlError"]["heading"] = $e->getHeading();
 				$json["urlError"]["message"] = $e->errorMessage();
@@ -75,6 +53,15 @@ header("Content-Type: application/json");
 		}
 
 		echo json_encode($json);
+	}
+
+	// Use this function to test plugin from the command line
+	function cli(){
+		$scanController = new ScanController("https://expired.badssl.com/");
+		$resultsAll = $scanController->scan();
+		$resultsAll->parseJSON();
+		$dm = new DataManager("https://expired.badssl.com/", "seangallagher135@gmail.com", $resultsAll);
+		$dm->write();
 	}
 
 ?>

@@ -35,17 +35,14 @@
 		}
 
 		public function scan(){
-			//echo $this->httpHeader;
 			$this->resultsSSL->hasCert = $this->getCertInfo();
 			if($this->resultsSSL->hasCert){
 				$this->resultsSSL->certExpired = $this->isExpired($this->certificate->expiration);
-				//FB::log("here");
 				$this->resultsSSL->issuer = $this->certificate->issuer;
 				$this->resultsSSL->isVerified = $this->certificate->isVerified;
 			}
 			$this->resultsSSL->testPassed = $this->testPassed();
 			$this->resultsSSL->rating = $this->getRating();
-			//echo $this->resultsSSL;
 			return $this->resultsSSL;
 		}
 
@@ -69,8 +66,6 @@
 			$index = strpos($this->httpHeader, $searchQuery, $offset) + strlen($searchQuery);
 			$end = strpos($this->httpHeader, "\n", $index);
 			$expirationString = substr($this->httpHeader, $index, ($end - $index));
-			// Test the fuck out of this, I don't trust it
-			// Update: Tested the fuck out of this, seems chill
 			$expiration = DateTime::createFromFormat('M d H:i:s Y e', 	$expirationString);
 
 			return $expiration;
@@ -81,14 +76,9 @@
 			$index = strpos($this->httpHeader, $searchQuery, $offset) + strlen($searchQuery);
 			$end = strpos($this->httpHeader, "\n", $index);
 			$issuer = substr($this->httpHeader, $index, ($end - $index));
-			//echo "Issuer: $issuer\n";
 			return $issuer;
 		}
 
-		// This verifies certs for nhl.com and github on my Arch Linux machine
-		// but not my Windows PC.  Potential cause is due to known certs on host
-		// so this probably shouldn't be used as a metric since managing client
-		// certs is definitely out of scope.
 		private function isVerified($offset){
 			$searchQuery = "SSL certificate verify ok.";
 			$index = strpos($this->httpHeader, $searchQuery, $offset);

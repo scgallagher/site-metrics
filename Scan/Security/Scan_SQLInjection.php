@@ -23,13 +23,10 @@
 			$isLocal = $this->isLocal();
 			if(!$isLocal){
 				$this->resultsSQLInjection->isLocal = false;
-				//$this->resultsSQLInjection->testPassed = true;
 			}
 			else {
 				$this->resultsSQLInjection->isLocal = true;
 				$this->crawl(getcwd(), 0);
-				//echo getcwd() . "\n";
-				//$this->searchPHP("wp-content/plugins/site-metrics/Testing/Security/TestData/SQLInjection_Test1.php");
 				$this->resultsSQLInjection->prepared_statements = $this->prepared_statements;
 				$this->resultsSQLInjection->non_prepared_statements = $this->non_prepared_statements;
 			}
@@ -47,7 +44,6 @@
 		}
 
 		private function crawl($target, $depth){
-			//echo "Target: $target\n";
 			$indent = "";
 			for($i = 0; $i < $depth; $i++){
 				$indent .= "  ";
@@ -55,7 +51,6 @@
 			$depth++;
 			// if target is a php file - scan it
 			if(preg_match('/^[a-zA-Z0-9_\\-\\/\\\\:]+.php$/', $target)){
-				//echo $target . "\n";
 				// scan the file
 				$this->searchPHP($target);
 			}
@@ -63,8 +58,6 @@
 			if(is_dir($target)){
 				if ($dh = opendir($target)){
     			while (($file = readdir($dh)) !== false){
-      			//echo "$target/$file\n";
-						//echo "$indent$file\n";
 						if(!$this->whitelisted($file)){
 							$this->crawl("$target/$file", $depth);
 						} // end if
@@ -81,20 +74,14 @@
 
 			if(!($fh = @fopen($target, "r"))){
 				// file failed to open - perhaps log this?
-				//echo "ERROR: failed to open file $target\n";
 				return;
 			}
 			while(!feof($fh)){
 				$line = fgets($fh);
 				if(preg_match('/mysql_query\\(/', $line) || preg_match('/mysqli_query\\(/', $line)){
-					//|| preg_match('/query\\(/', $line) || preg_match('/exec\\(/', $line)){
-						//echo $line . "\n";
-						//echo "$target\n";
 					$this->non_prepared_statements++;
 				}
 				else if(preg_match('/prepare\\(/', $line)){
-					//echo $line . "\n";
-					//echo "$target\n";
 					$this->prepared_statements++;
 				}
 			}

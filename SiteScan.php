@@ -49,7 +49,7 @@ header("Content-Type: application/json");
 				$scanController = new ScanController($url);
 				$resultsAll = $scanController->scan();
 				$json["results"] = $resultsAll->parseJSON();
-				
+
 				$emailController = new EmailController();
 				$addContactResult = $emailController->addContact(new Contact($email));
 			}

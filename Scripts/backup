@@ -1,5 +1,0 @@
-cd ..
-file="site-metrics_"$(date +%m-%d-%y_%H%M)".zip"
-
-sudo zip -r $file site-metrics
-sudo mv $file /home/sean/projects/backups/

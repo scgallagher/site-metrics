@@ -3,8 +3,6 @@
 
 	require_once("Data/Mobile/Results_ViewportOptimization.php");
 
-	include_once("firephp-core-0.4.0/lib/FirePHPCore/fb.php");
-
 	class Scan_ViewportOptimization {
 
 		private $dom;
@@ -16,7 +14,6 @@
 		}
 
 		public function scan(){
-			//FB::log("entered scan!");
 			$this->CheckforContentViewport();
 			$this->resultsViewportOptimization->testPassed = $this->testPassed();
 			$this->resultsViewportOptimization->rating = $this->getRating();
@@ -26,7 +23,6 @@
 
 		private function CheckforContentViewport(){
 			$metaTags = $this->dom->getElementsByTagName("meta");
-			//FB::log("got tags!");
 			foreach ($metaTags as $metaTag) {
 				if($metaTag->hasAttribute("content")){
 					$metaContents = $metaTag->getAttribute("content");

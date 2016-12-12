@@ -16,7 +16,6 @@
 		}
 
 		public function scan(){
-			//return $this->resultsResponsiveness;
 			$this->CheckTags();
 			if($this->mediaQueries > 0){
 				$this->resultsResponsiveness->hasMediaQueries = "Yes";
@@ -62,7 +61,6 @@
 
 					//checking for bootstrap
 					$scriptTags = $this->dom->getElementsByTagName("script");
-					//FB::log("got tags!");
 					foreach ($scriptTags as $script) {
 						if($script->hasAttribute("src")){
 							$src = $script->getAttribute("src");
@@ -90,10 +88,6 @@
 			$curlHandle = curl_init();
 
 			curl_setopt($curlHandle, CURLOPT_URL, $url);
-			//curl_setopt($curlHandle, CURLOPT_SSL_VERIFYPEER, 0);
-			//curl_setopt($curlHandle, CURLOPT_SSL_VERIFYHOST, 0);
-		  //curl_setopt($curlHandle, CURLOPT_CERTINFO, 1);
-			//curl_setopt($curlHandle, CURLOPT_VERBOSE, 1);
 			// Follow redirects
 			curl_setopt($curlHandle, CURLOPT_FOLLOWLOCATION, true);
 			curl_setopt($curlHandle, CURLOPT_RETURNTRANSFER, true);

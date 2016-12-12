@@ -1,17 +1,9 @@
-/*div {
-  border: 1px solid black;
+
+a:hover {
+  text-decoration: none;
 }
 
-span {
-  border: 5px dotted black;
-}*/
-
 .resultsContainer {
-  /*padding-top: 10%;*/
-  /*height: 20em;*/
-  /*width: 20em;*/
-  /*padding: .5em;*/
-  /*margin: 1em;*/
   padding: 0;
 }
 
@@ -50,7 +42,6 @@ span {
 }
 
 .na {
-  /*font-size: calc(2vw + 2vh);*/
   background-color: blue;
 }
 
@@ -58,15 +49,6 @@ span {
   font-size: .35em;
   white-space: pre-wrap;
 }
-
-/*.na {
-  font-size: calc(2vw + 2vh);
-  background-color: blue;
-  padding: 0;
-  padding-top: 15%;
-  border-bottom-left-radius: .7em;
-  border-bottom-right-radius: .7em;
-}*/
 
 .divResults {
   position: absolute;
@@ -117,8 +99,3 @@ span {
   font-size: calc(1vw + 1vh);
   font-variant: small-caps;
 }
-
-/*#headingSEO {
-  font-size: calc(3vw + 3vh + 2vmin);
-  line-height: 1;
-}*/

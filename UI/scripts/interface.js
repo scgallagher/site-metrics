@@ -136,11 +136,11 @@ function update_security_sqlInjection(result){
 function update_seo_heading(result){
   var rating = result.rating;
   console.log("SEO - HEADING");
-  console.log("  Has H1:\t\t" + result.hasH1);
+  console.log("  Has H1:\t" + result.hasH1);
   console.log("  H1 Count:\t" +result.h1Count);
   console.log("  H2 Count:\t" +result.h2Count);
   console.log("  H3 Count:\t" +result.h3Count);
-  console.log("  Rating:\t\t" + rating);
+  console.log("  Rating:\t" + rating);
 	if(rating.toLowerCase() === "good"){
 		$("#pf_heading").parent().addClass("good");
 	}
@@ -154,7 +154,7 @@ function update_seo_heading(result){
 		$("#pf_heading").parent().addClass("na");
 	}
   $("#data_heading").text("H1 Tags: " + result.h1Count +
-    "\nH2 Tags: " + result.h2Count + "\nH3 Tags: " + result.h2Count);
+    "\nH2 Tags: " + result.h2Count + "\nH3 Tags: " + result.h3Count);
 }
 
 function update_seo_metaDescription(result){
@@ -225,6 +225,7 @@ function update_mobile_viewportOptimization(result){
   var rating = result.rating;
   console.log("MOBILE - VIEWPORT OPTIMIZATION");
   console.log("  Using Content Viewport:\t" + result.usesContentViewport);
+  console.log("  Rating:\t\t\t" + rating);
 	if(rating.toLowerCase() === "good"){
 		$("#pf_viewportOptimization").parent().addClass("good");
 	}
@@ -267,7 +268,7 @@ function update_performance_compression(result){
   var rating = result.rating;
   // log metrics to console here
   console.log("PERFORMANCE - COMPRESSION");
-  console.log("  Percentage:\t" + result.compressionPercentage);
+  console.log("  Percentage:\t" + result.compressionPercentage + "%");
   console.log("  Rating:\t" + result.compressionResult);
 	if(rating.toLowerCase() === "good"){
 		$("#pf_compression").parent().addClass("good");
@@ -329,6 +330,7 @@ function update_performance_pageLoad(result){
 function update_performance_pageRedirects(result){
   var rating = result.rating;
   console.log("PERFORMANCE - PAGE REDIRECTS");
+  console.log("  Redirects:\t" + result.redirectCount);
   console.log("  Rating:\t" + result.redirectsResult);
 	if(rating.toLowerCase() === "good"){
 		$("#pf_pageRedirects").parent().addClass("good");
@@ -348,7 +350,9 @@ function update_performance_pageRedirects(result){
 
 function update_performance_pageSize(result){
   var rating = result.rating;
+  var pageSizeInKB = Math.round(result.pageSizeInBytes / 1024);
   console.log("PERFORMANCE - PAGE SIZE");
+  console.log("  Page Size:\t" + pageSizeInKB + "KB");
   console.log("  Rating:\t" + result.pageSizeResult);
 	if(rating.toLowerCase() === "good"){
 		$("#pf_pageSize").parent().addClass("good");
@@ -363,7 +367,6 @@ function update_performance_pageSize(result){
 		$("#pf_pageSize").parent().addClass("na");
 		$("#pf_pageSize").text("n/a");
 	}
-  var pageSizeInKB = Math.round(result.pageSizeInBytes / 1024);
   $("#data_pageSize").text("Page Size:\t" + pageSizeInKB + "KB");
 }
 
